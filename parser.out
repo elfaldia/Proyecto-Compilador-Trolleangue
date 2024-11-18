@@ -1,0 +1,2939 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    COMMENT
+    DOT
+    NOT
+    QUOTATION
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> PROGRAM MAIN expressions END PROGRAM MAIN
+Rule 2     expressions -> expressions expression
+Rule 3     expressions -> expression
+Rule 4     expression -> var_declaration
+Rule 5     expression -> if_statement
+Rule 6     expression -> for_loop
+Rule 7     expression -> while_loop
+Rule 8     expression -> print
+Rule 9     expression -> empty
+Rule 10    data_type -> INT
+Rule 11    data_type -> REAL
+Rule 12    data_type -> BOOLEAN
+Rule 13    data_type -> STRING
+Rule 14    var_declaration -> data_type DOUBLECOLON declarations
+Rule 15    declarations -> IDENTIFIER COMMA declarations
+Rule 16    declarations -> IDENTIFIER
+Rule 17    var_declaration -> IDENTIFIER ASSING statement
+Rule 18    statement -> IDENTIFIER
+Rule 19    statement -> statement PLUS statement
+Rule 20    statement -> statement MINUS statement
+Rule 21    statement -> statement TIMES statement
+Rule 22    statement -> statement DIVIDE statement
+Rule 23    statement -> INT
+Rule 24    statement -> REAL
+Rule 25    statement -> BOOLEAN
+Rule 26    statement -> STRING
+Rule 27    statement -> L_PARENTHESIS statement R_PARENTHESIS
+Rule 28    statement -> L_PARENTHESIS conditional R_PARENTHESIS
+Rule 29    conditional -> conditional EQUAL conditional
+Rule 30    conditional -> conditional NOT_EQUAL conditional
+Rule 31    conditional -> conditional GREATER conditional
+Rule 32    conditional -> conditional LESS conditional
+Rule 33    conditional -> conditional GREATER_EQUAL conditional
+Rule 34    conditional -> conditional LESS_EQUAL conditional
+Rule 35    conditional -> conditional AND conditional
+Rule 36    conditional -> conditional OR conditional
+Rule 37    conditional -> TRUE
+Rule 38    conditional -> FALSE
+Rule 39    conditional -> statement
+Rule 40    if_statement -> IF L_PARENTHESIS conditional R_PARENTHESIS THEN L_BRACE expressions R_BRACE
+Rule 41    if_statement -> IF L_PARENTHESIS conditional R_PARENTHESIS THEN L_BRACE expressions R_BRACE ELSE L_BRACE expressions R_BRACE
+Rule 42    for_loop -> FOR L_PARENTHESIS statement SEMMICOLON conditional SEMMICOLON var_declaration R_PARENTHESIS L_BRACE expressions R_BRACE
+Rule 43    while_loop -> WHILE L_PARENTHESIS conditional R_PARENTHESIS DO L_BRACE expressions R_BRACE
+Rule 44    print -> PRINT L_PARENTHESIS statement R_PARENTHESIS
+Rule 45    empty -> <empty>
+
+Terminals, with rules where they appear
+
+AND                  : 35
+ASSING               : 17
+BOOLEAN              : 12 25
+COMMA                : 15
+COMMENT              : 
+DIVIDE               : 22
+DO                   : 43
+DOT                  : 
+DOUBLECOLON          : 14
+ELSE                 : 41
+END                  : 1
+EQUAL                : 29
+FALSE                : 38
+FOR                  : 42
+GREATER              : 31
+GREATER_EQUAL        : 33
+IDENTIFIER           : 15 16 17 18
+IF                   : 40 41
+INT                  : 10 23
+LESS                 : 32
+LESS_EQUAL           : 34
+L_BRACE              : 40 41 41 42 43
+L_PARENTHESIS        : 27 28 40 41 42 43 44
+MAIN                 : 1 1
+MINUS                : 20
+NOT                  : 
+NOT_EQUAL            : 30
+OR                   : 36
+PLUS                 : 19
+PRINT                : 44
+PROGRAM              : 1 1
+QUOTATION            : 
+REAL                 : 11 24
+R_BRACE              : 40 41 41 42 43
+R_PARENTHESIS        : 27 28 40 41 42 43 44
+SEMMICOLON           : 42 42
+STRING               : 13 26
+THEN                 : 40 41
+TIMES                : 21
+TRUE                 : 37
+WHILE                : 43
+error                : 
+
+Nonterminals, with rules where they appear
+
+conditional          : 28 29 29 30 30 31 31 32 32 33 33 34 34 35 35 36 36 40 41 42 43
+data_type            : 14
+declarations         : 14 15
+empty                : 9
+expression           : 2 3
+expressions          : 1 2 40 41 41 42 43
+for_loop             : 6
+if_statement         : 5
+print                : 8
+program              : 0
+statement            : 17 19 19 20 20 21 21 22 22 27 39 42 44
+var_declaration      : 4 42
+while_loop           : 7
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . PROGRAM MAIN expressions END PROGRAM MAIN
+
+    PROGRAM         shift and go to state 2
+
+    program                        shift and go to state 1
+
+state 1
+
+    (0) S' -> program .
+
+
+
+state 2
+
+    (1) program -> PROGRAM . MAIN expressions END PROGRAM MAIN
+
+    MAIN            shift and go to state 3
+
+
+state 3
+
+    (1) program -> PROGRAM MAIN . expressions END PROGRAM MAIN
+    (2) expressions -> . expressions expression
+    (3) expressions -> . expression
+    (4) expression -> . var_declaration
+    (5) expression -> . if_statement
+    (6) expression -> . for_loop
+    (7) expression -> . while_loop
+    (8) expression -> . print
+    (9) expression -> . empty
+    (14) var_declaration -> . data_type DOUBLECOLON declarations
+    (17) var_declaration -> . IDENTIFIER ASSING statement
+    (40) if_statement -> . IF L_PARENTHESIS conditional R_PARENTHESIS THEN L_BRACE expressions R_BRACE
+    (41) if_statement -> . IF L_PARENTHESIS conditional R_PARENTHESIS THEN L_BRACE expressions R_BRACE ELSE L_BRACE expressions R_BRACE
+    (42) for_loop -> . FOR L_PARENTHESIS statement SEMMICOLON conditional SEMMICOLON var_declaration R_PARENTHESIS L_BRACE expressions R_BRACE
+    (43) while_loop -> . WHILE L_PARENTHESIS conditional R_PARENTHESIS DO L_BRACE expressions R_BRACE
+    (44) print -> . PRINT L_PARENTHESIS statement R_PARENTHESIS
+    (45) empty -> .
+    (10) data_type -> . INT
+    (11) data_type -> . REAL
+    (12) data_type -> . BOOLEAN
+    (13) data_type -> . STRING
+
+  ! shift/reduce conflict for IDENTIFIER resolved as shift
+  ! shift/reduce conflict for IF resolved as shift
+  ! shift/reduce conflict for FOR resolved as shift
+  ! shift/reduce conflict for WHILE resolved as shift
+  ! shift/reduce conflict for PRINT resolved as shift
+  ! shift/reduce conflict for INT resolved as shift
+  ! shift/reduce conflict for REAL resolved as shift
+  ! shift/reduce conflict for BOOLEAN resolved as shift
+  ! shift/reduce conflict for STRING resolved as shift
+    IDENTIFIER      shift and go to state 13
+    IF              shift and go to state 14
+    FOR             shift and go to state 15
+    WHILE           shift and go to state 16
+    PRINT           shift and go to state 17
+    END             reduce using rule 45 (empty -> .)
+    INT             shift and go to state 18
+    REAL            shift and go to state 19
+    BOOLEAN         shift and go to state 20
+    STRING          shift and go to state 21
+
+  ! IDENTIFIER      [ reduce using rule 45 (empty -> .) ]
+  ! IF              [ reduce using rule 45 (empty -> .) ]
+  ! FOR             [ reduce using rule 45 (empty -> .) ]
+  ! WHILE           [ reduce using rule 45 (empty -> .) ]
+  ! PRINT           [ reduce using rule 45 (empty -> .) ]
+  ! INT             [ reduce using rule 45 (empty -> .) ]
+  ! REAL            [ reduce using rule 45 (empty -> .) ]
+  ! BOOLEAN         [ reduce using rule 45 (empty -> .) ]
+  ! STRING          [ reduce using rule 45 (empty -> .) ]
+
+    expressions                    shift and go to state 4
+    expression                     shift and go to state 5
+    var_declaration                shift and go to state 6
+    if_statement                   shift and go to state 7
+    for_loop                       shift and go to state 8
+    while_loop                     shift and go to state 9
+    print                          shift and go to state 10
+    empty                          shift and go to state 11
+    data_type                      shift and go to state 12
+
+state 4
+
+    (1) program -> PROGRAM MAIN expressions . END PROGRAM MAIN
+    (2) expressions -> expressions . expression
+    (4) expression -> . var_declaration
+    (5) expression -> . if_statement
+    (6) expression -> . for_loop
+    (7) expression -> . while_loop
+    (8) expression -> . print
+    (9) expression -> . empty
+    (14) var_declaration -> . data_type DOUBLECOLON declarations
+    (17) var_declaration -> . IDENTIFIER ASSING statement
+    (40) if_statement -> . IF L_PARENTHESIS conditional R_PARENTHESIS THEN L_BRACE expressions R_BRACE
+    (41) if_statement -> . IF L_PARENTHESIS conditional R_PARENTHESIS THEN L_BRACE expressions R_BRACE ELSE L_BRACE expressions R_BRACE
+    (42) for_loop -> . FOR L_PARENTHESIS statement SEMMICOLON conditional SEMMICOLON var_declaration R_PARENTHESIS L_BRACE expressions R_BRACE
+    (43) while_loop -> . WHILE L_PARENTHESIS conditional R_PARENTHESIS DO L_BRACE expressions R_BRACE
+    (44) print -> . PRINT L_PARENTHESIS statement R_PARENTHESIS
+    (45) empty -> .
+    (10) data_type -> . INT
+    (11) data_type -> . REAL
+    (12) data_type -> . BOOLEAN
+    (13) data_type -> . STRING
+
+  ! shift/reduce conflict for END resolved as shift
+  ! shift/reduce conflict for IDENTIFIER resolved as shift
+  ! shift/reduce conflict for IF resolved as shift
+  ! shift/reduce conflict for FOR resolved as shift
+  ! shift/reduce conflict for WHILE resolved as shift
+  ! shift/reduce conflict for PRINT resolved as shift
+  ! shift/reduce conflict for INT resolved as shift
+  ! shift/reduce conflict for REAL resolved as shift
+  ! shift/reduce conflict for BOOLEAN resolved as shift
+  ! shift/reduce conflict for STRING resolved as shift
+    END             shift and go to state 22
+    IDENTIFIER      shift and go to state 13
+    IF              shift and go to state 14
+    FOR             shift and go to state 15
+    WHILE           shift and go to state 16
+    PRINT           shift and go to state 17
+    INT             shift and go to state 18
+    REAL            shift and go to state 19
+    BOOLEAN         shift and go to state 20
+    STRING          shift and go to state 21
+
+  ! END             [ reduce using rule 45 (empty -> .) ]
+  ! IDENTIFIER      [ reduce using rule 45 (empty -> .) ]
+  ! IF              [ reduce using rule 45 (empty -> .) ]
+  ! FOR             [ reduce using rule 45 (empty -> .) ]
+  ! WHILE           [ reduce using rule 45 (empty -> .) ]
+  ! PRINT           [ reduce using rule 45 (empty -> .) ]
+  ! INT             [ reduce using rule 45 (empty -> .) ]
+  ! REAL            [ reduce using rule 45 (empty -> .) ]
+  ! BOOLEAN         [ reduce using rule 45 (empty -> .) ]
+  ! STRING          [ reduce using rule 45 (empty -> .) ]
+
+    expression                     shift and go to state 23
+    var_declaration                shift and go to state 6
+    if_statement                   shift and go to state 7
+    for_loop                       shift and go to state 8
+    while_loop                     shift and go to state 9
+    print                          shift and go to state 10
+    empty                          shift and go to state 11
+    data_type                      shift and go to state 12
+
+state 5
+
+    (3) expressions -> expression .
+
+    END             reduce using rule 3 (expressions -> expression .)
+    IDENTIFIER      reduce using rule 3 (expressions -> expression .)
+    IF              reduce using rule 3 (expressions -> expression .)
+    FOR             reduce using rule 3 (expressions -> expression .)
+    WHILE           reduce using rule 3 (expressions -> expression .)
+    PRINT           reduce using rule 3 (expressions -> expression .)
+    INT             reduce using rule 3 (expressions -> expression .)
+    REAL            reduce using rule 3 (expressions -> expression .)
+    BOOLEAN         reduce using rule 3 (expressions -> expression .)
+    STRING          reduce using rule 3 (expressions -> expression .)
+    R_BRACE         reduce using rule 3 (expressions -> expression .)
+
+
+state 6
+
+    (4) expression -> var_declaration .
+
+    END             reduce using rule 4 (expression -> var_declaration .)
+    IDENTIFIER      reduce using rule 4 (expression -> var_declaration .)
+    IF              reduce using rule 4 (expression -> var_declaration .)
+    FOR             reduce using rule 4 (expression -> var_declaration .)
+    WHILE           reduce using rule 4 (expression -> var_declaration .)
+    PRINT           reduce using rule 4 (expression -> var_declaration .)
+    INT             reduce using rule 4 (expression -> var_declaration .)
+    REAL            reduce using rule 4 (expression -> var_declaration .)
+    BOOLEAN         reduce using rule 4 (expression -> var_declaration .)
+    STRING          reduce using rule 4 (expression -> var_declaration .)
+    R_BRACE         reduce using rule 4 (expression -> var_declaration .)
+
+
+state 7
+
+    (5) expression -> if_statement .
+
+    END             reduce using rule 5 (expression -> if_statement .)
+    IDENTIFIER      reduce using rule 5 (expression -> if_statement .)
+    IF              reduce using rule 5 (expression -> if_statement .)
+    FOR             reduce using rule 5 (expression -> if_statement .)
+    WHILE           reduce using rule 5 (expression -> if_statement .)
+    PRINT           reduce using rule 5 (expression -> if_statement .)
+    INT             reduce using rule 5 (expression -> if_statement .)
+    REAL            reduce using rule 5 (expression -> if_statement .)
+    BOOLEAN         reduce using rule 5 (expression -> if_statement .)
+    STRING          reduce using rule 5 (expression -> if_statement .)
+    R_BRACE         reduce using rule 5 (expression -> if_statement .)
+
+
+state 8
+
+    (6) expression -> for_loop .
+
+    END             reduce using rule 6 (expression -> for_loop .)
+    IDENTIFIER      reduce using rule 6 (expression -> for_loop .)
+    IF              reduce using rule 6 (expression -> for_loop .)
+    FOR             reduce using rule 6 (expression -> for_loop .)
+    WHILE           reduce using rule 6 (expression -> for_loop .)
+    PRINT           reduce using rule 6 (expression -> for_loop .)
+    INT             reduce using rule 6 (expression -> for_loop .)
+    REAL            reduce using rule 6 (expression -> for_loop .)
+    BOOLEAN         reduce using rule 6 (expression -> for_loop .)
+    STRING          reduce using rule 6 (expression -> for_loop .)
+    R_BRACE         reduce using rule 6 (expression -> for_loop .)
+
+
+state 9
+
+    (7) expression -> while_loop .
+
+    END             reduce using rule 7 (expression -> while_loop .)
+    IDENTIFIER      reduce using rule 7 (expression -> while_loop .)
+    IF              reduce using rule 7 (expression -> while_loop .)
+    FOR             reduce using rule 7 (expression -> while_loop .)
+    WHILE           reduce using rule 7 (expression -> while_loop .)
+    PRINT           reduce using rule 7 (expression -> while_loop .)
+    INT             reduce using rule 7 (expression -> while_loop .)
+    REAL            reduce using rule 7 (expression -> while_loop .)
+    BOOLEAN         reduce using rule 7 (expression -> while_loop .)
+    STRING          reduce using rule 7 (expression -> while_loop .)
+    R_BRACE         reduce using rule 7 (expression -> while_loop .)
+
+
+state 10
+
+    (8) expression -> print .
+
+    END             reduce using rule 8 (expression -> print .)
+    IDENTIFIER      reduce using rule 8 (expression -> print .)
+    IF              reduce using rule 8 (expression -> print .)
+    FOR             reduce using rule 8 (expression -> print .)
+    WHILE           reduce using rule 8 (expression -> print .)
+    PRINT           reduce using rule 8 (expression -> print .)
+    INT             reduce using rule 8 (expression -> print .)
+    REAL            reduce using rule 8 (expression -> print .)
+    BOOLEAN         reduce using rule 8 (expression -> print .)
+    STRING          reduce using rule 8 (expression -> print .)
+    R_BRACE         reduce using rule 8 (expression -> print .)
+
+
+state 11
+
+    (9) expression -> empty .
+
+    END             reduce using rule 9 (expression -> empty .)
+    IDENTIFIER      reduce using rule 9 (expression -> empty .)
+    IF              reduce using rule 9 (expression -> empty .)
+    FOR             reduce using rule 9 (expression -> empty .)
+    WHILE           reduce using rule 9 (expression -> empty .)
+    PRINT           reduce using rule 9 (expression -> empty .)
+    INT             reduce using rule 9 (expression -> empty .)
+    REAL            reduce using rule 9 (expression -> empty .)
+    BOOLEAN         reduce using rule 9 (expression -> empty .)
+    STRING          reduce using rule 9 (expression -> empty .)
+    R_BRACE         reduce using rule 9 (expression -> empty .)
+
+
+state 12
+
+    (14) var_declaration -> data_type . DOUBLECOLON declarations
+
+    DOUBLECOLON     shift and go to state 24
+
+
+state 13
+
+    (17) var_declaration -> IDENTIFIER . ASSING statement
+
+    ASSING          shift and go to state 25
+
+
+state 14
+
+    (40) if_statement -> IF . L_PARENTHESIS conditional R_PARENTHESIS THEN L_BRACE expressions R_BRACE
+    (41) if_statement -> IF . L_PARENTHESIS conditional R_PARENTHESIS THEN L_BRACE expressions R_BRACE ELSE L_BRACE expressions R_BRACE
+
+    L_PARENTHESIS   shift and go to state 26
+
+
+state 15
+
+    (42) for_loop -> FOR . L_PARENTHESIS statement SEMMICOLON conditional SEMMICOLON var_declaration R_PARENTHESIS L_BRACE expressions R_BRACE
+
+    L_PARENTHESIS   shift and go to state 27
+
+
+state 16
+
+    (43) while_loop -> WHILE . L_PARENTHESIS conditional R_PARENTHESIS DO L_BRACE expressions R_BRACE
+
+    L_PARENTHESIS   shift and go to state 28
+
+
+state 17
+
+    (44) print -> PRINT . L_PARENTHESIS statement R_PARENTHESIS
+
+    L_PARENTHESIS   shift and go to state 29
+
+
+state 18
+
+    (10) data_type -> INT .
+
+    DOUBLECOLON     reduce using rule 10 (data_type -> INT .)
+
+
+state 19
+
+    (11) data_type -> REAL .
+
+    DOUBLECOLON     reduce using rule 11 (data_type -> REAL .)
+
+
+state 20
+
+    (12) data_type -> BOOLEAN .
+
+    DOUBLECOLON     reduce using rule 12 (data_type -> BOOLEAN .)
+
+
+state 21
+
+    (13) data_type -> STRING .
+
+    DOUBLECOLON     reduce using rule 13 (data_type -> STRING .)
+
+
+state 22
+
+    (1) program -> PROGRAM MAIN expressions END . PROGRAM MAIN
+
+    PROGRAM         shift and go to state 30
+
+
+state 23
+
+    (2) expressions -> expressions expression .
+
+    END             reduce using rule 2 (expressions -> expressions expression .)
+    IDENTIFIER      reduce using rule 2 (expressions -> expressions expression .)
+    IF              reduce using rule 2 (expressions -> expressions expression .)
+    FOR             reduce using rule 2 (expressions -> expressions expression .)
+    WHILE           reduce using rule 2 (expressions -> expressions expression .)
+    PRINT           reduce using rule 2 (expressions -> expressions expression .)
+    INT             reduce using rule 2 (expressions -> expressions expression .)
+    REAL            reduce using rule 2 (expressions -> expressions expression .)
+    BOOLEAN         reduce using rule 2 (expressions -> expressions expression .)
+    STRING          reduce using rule 2 (expressions -> expressions expression .)
+    R_BRACE         reduce using rule 2 (expressions -> expressions expression .)
+
+
+state 24
+
+    (14) var_declaration -> data_type DOUBLECOLON . declarations
+    (15) declarations -> . IDENTIFIER COMMA declarations
+    (16) declarations -> . IDENTIFIER
+
+    IDENTIFIER      shift and go to state 32
+
+    declarations                   shift and go to state 31
+
+state 25
+
+    (17) var_declaration -> IDENTIFIER ASSING . statement
+    (18) statement -> . IDENTIFIER
+    (19) statement -> . statement PLUS statement
+    (20) statement -> . statement MINUS statement
+    (21) statement -> . statement TIMES statement
+    (22) statement -> . statement DIVIDE statement
+    (23) statement -> . INT
+    (24) statement -> . REAL
+    (25) statement -> . BOOLEAN
+    (26) statement -> . STRING
+    (27) statement -> . L_PARENTHESIS statement R_PARENTHESIS
+    (28) statement -> . L_PARENTHESIS conditional R_PARENTHESIS
+
+    IDENTIFIER      shift and go to state 33
+    INT             shift and go to state 35
+    REAL            shift and go to state 36
+    BOOLEAN         shift and go to state 37
+    STRING          shift and go to state 38
+    L_PARENTHESIS   shift and go to state 39
+
+    statement                      shift and go to state 34
+
+state 26
+
+    (40) if_statement -> IF L_PARENTHESIS . conditional R_PARENTHESIS THEN L_BRACE expressions R_BRACE
+    (41) if_statement -> IF L_PARENTHESIS . conditional R_PARENTHESIS THEN L_BRACE expressions R_BRACE ELSE L_BRACE expressions R_BRACE
+    (29) conditional -> . conditional EQUAL conditional
+    (30) conditional -> . conditional NOT_EQUAL conditional
+    (31) conditional -> . conditional GREATER conditional
+    (32) conditional -> . conditional LESS conditional
+    (33) conditional -> . conditional GREATER_EQUAL conditional
+    (34) conditional -> . conditional LESS_EQUAL conditional
+    (35) conditional -> . conditional AND conditional
+    (36) conditional -> . conditional OR conditional
+    (37) conditional -> . TRUE
+    (38) conditional -> . FALSE
+    (39) conditional -> . statement
+    (18) statement -> . IDENTIFIER
+    (19) statement -> . statement PLUS statement
+    (20) statement -> . statement MINUS statement
+    (21) statement -> . statement TIMES statement
+    (22) statement -> . statement DIVIDE statement
+    (23) statement -> . INT
+    (24) statement -> . REAL
+    (25) statement -> . BOOLEAN
+    (26) statement -> . STRING
+    (27) statement -> . L_PARENTHESIS statement R_PARENTHESIS
+    (28) statement -> . L_PARENTHESIS conditional R_PARENTHESIS
+
+    TRUE            shift and go to state 41
+    FALSE           shift and go to state 42
+    IDENTIFIER      shift and go to state 33
+    INT             shift and go to state 35
+    REAL            shift and go to state 36
+    BOOLEAN         shift and go to state 37
+    STRING          shift and go to state 38
+    L_PARENTHESIS   shift and go to state 39
+
+    conditional                    shift and go to state 40
+    statement                      shift and go to state 43
+
+state 27
+
+    (42) for_loop -> FOR L_PARENTHESIS . statement SEMMICOLON conditional SEMMICOLON var_declaration R_PARENTHESIS L_BRACE expressions R_BRACE
+    (18) statement -> . IDENTIFIER
+    (19) statement -> . statement PLUS statement
+    (20) statement -> . statement MINUS statement
+    (21) statement -> . statement TIMES statement
+    (22) statement -> . statement DIVIDE statement
+    (23) statement -> . INT
+    (24) statement -> . REAL
+    (25) statement -> . BOOLEAN
+    (26) statement -> . STRING
+    (27) statement -> . L_PARENTHESIS statement R_PARENTHESIS
+    (28) statement -> . L_PARENTHESIS conditional R_PARENTHESIS
+
+    IDENTIFIER      shift and go to state 33
+    INT             shift and go to state 35
+    REAL            shift and go to state 36
+    BOOLEAN         shift and go to state 37
+    STRING          shift and go to state 38
+    L_PARENTHESIS   shift and go to state 39
+
+    statement                      shift and go to state 44
+
+state 28
+
+    (43) while_loop -> WHILE L_PARENTHESIS . conditional R_PARENTHESIS DO L_BRACE expressions R_BRACE
+    (29) conditional -> . conditional EQUAL conditional
+    (30) conditional -> . conditional NOT_EQUAL conditional
+    (31) conditional -> . conditional GREATER conditional
+    (32) conditional -> . conditional LESS conditional
+    (33) conditional -> . conditional GREATER_EQUAL conditional
+    (34) conditional -> . conditional LESS_EQUAL conditional
+    (35) conditional -> . conditional AND conditional
+    (36) conditional -> . conditional OR conditional
+    (37) conditional -> . TRUE
+    (38) conditional -> . FALSE
+    (39) conditional -> . statement
+    (18) statement -> . IDENTIFIER
+    (19) statement -> . statement PLUS statement
+    (20) statement -> . statement MINUS statement
+    (21) statement -> . statement TIMES statement
+    (22) statement -> . statement DIVIDE statement
+    (23) statement -> . INT
+    (24) statement -> . REAL
+    (25) statement -> . BOOLEAN
+    (26) statement -> . STRING
+    (27) statement -> . L_PARENTHESIS statement R_PARENTHESIS
+    (28) statement -> . L_PARENTHESIS conditional R_PARENTHESIS
+
+    TRUE            shift and go to state 41
+    FALSE           shift and go to state 42
+    IDENTIFIER      shift and go to state 33
+    INT             shift and go to state 35
+    REAL            shift and go to state 36
+    BOOLEAN         shift and go to state 37
+    STRING          shift and go to state 38
+    L_PARENTHESIS   shift and go to state 39
+
+    conditional                    shift and go to state 45
+    statement                      shift and go to state 43
+
+state 29
+
+    (44) print -> PRINT L_PARENTHESIS . statement R_PARENTHESIS
+    (18) statement -> . IDENTIFIER
+    (19) statement -> . statement PLUS statement
+    (20) statement -> . statement MINUS statement
+    (21) statement -> . statement TIMES statement
+    (22) statement -> . statement DIVIDE statement
+    (23) statement -> . INT
+    (24) statement -> . REAL
+    (25) statement -> . BOOLEAN
+    (26) statement -> . STRING
+    (27) statement -> . L_PARENTHESIS statement R_PARENTHESIS
+    (28) statement -> . L_PARENTHESIS conditional R_PARENTHESIS
+
+    IDENTIFIER      shift and go to state 33
+    INT             shift and go to state 35
+    REAL            shift and go to state 36
+    BOOLEAN         shift and go to state 37
+    STRING          shift and go to state 38
+    L_PARENTHESIS   shift and go to state 39
+
+    statement                      shift and go to state 46
+
+state 30
+
+    (1) program -> PROGRAM MAIN expressions END PROGRAM . MAIN
+
+    MAIN            shift and go to state 47
+
+
+state 31
+
+    (14) var_declaration -> data_type DOUBLECOLON declarations .
+
+    END             reduce using rule 14 (var_declaration -> data_type DOUBLECOLON declarations .)
+    IDENTIFIER      reduce using rule 14 (var_declaration -> data_type DOUBLECOLON declarations .)
+    IF              reduce using rule 14 (var_declaration -> data_type DOUBLECOLON declarations .)
+    FOR             reduce using rule 14 (var_declaration -> data_type DOUBLECOLON declarations .)
+    WHILE           reduce using rule 14 (var_declaration -> data_type DOUBLECOLON declarations .)
+    PRINT           reduce using rule 14 (var_declaration -> data_type DOUBLECOLON declarations .)
+    INT             reduce using rule 14 (var_declaration -> data_type DOUBLECOLON declarations .)
+    REAL            reduce using rule 14 (var_declaration -> data_type DOUBLECOLON declarations .)
+    BOOLEAN         reduce using rule 14 (var_declaration -> data_type DOUBLECOLON declarations .)
+    STRING          reduce using rule 14 (var_declaration -> data_type DOUBLECOLON declarations .)
+    R_BRACE         reduce using rule 14 (var_declaration -> data_type DOUBLECOLON declarations .)
+    R_PARENTHESIS   reduce using rule 14 (var_declaration -> data_type DOUBLECOLON declarations .)
+
+
+state 32
+
+    (15) declarations -> IDENTIFIER . COMMA declarations
+    (16) declarations -> IDENTIFIER .
+
+    COMMA           shift and go to state 48
+    END             reduce using rule 16 (declarations -> IDENTIFIER .)
+    IDENTIFIER      reduce using rule 16 (declarations -> IDENTIFIER .)
+    IF              reduce using rule 16 (declarations -> IDENTIFIER .)
+    FOR             reduce using rule 16 (declarations -> IDENTIFIER .)
+    WHILE           reduce using rule 16 (declarations -> IDENTIFIER .)
+    PRINT           reduce using rule 16 (declarations -> IDENTIFIER .)
+    INT             reduce using rule 16 (declarations -> IDENTIFIER .)
+    REAL            reduce using rule 16 (declarations -> IDENTIFIER .)
+    BOOLEAN         reduce using rule 16 (declarations -> IDENTIFIER .)
+    STRING          reduce using rule 16 (declarations -> IDENTIFIER .)
+    R_BRACE         reduce using rule 16 (declarations -> IDENTIFIER .)
+    R_PARENTHESIS   reduce using rule 16 (declarations -> IDENTIFIER .)
+
+
+state 33
+
+    (18) statement -> IDENTIFIER .
+
+    PLUS            reduce using rule 18 (statement -> IDENTIFIER .)
+    MINUS           reduce using rule 18 (statement -> IDENTIFIER .)
+    TIMES           reduce using rule 18 (statement -> IDENTIFIER .)
+    DIVIDE          reduce using rule 18 (statement -> IDENTIFIER .)
+    END             reduce using rule 18 (statement -> IDENTIFIER .)
+    IDENTIFIER      reduce using rule 18 (statement -> IDENTIFIER .)
+    IF              reduce using rule 18 (statement -> IDENTIFIER .)
+    FOR             reduce using rule 18 (statement -> IDENTIFIER .)
+    WHILE           reduce using rule 18 (statement -> IDENTIFIER .)
+    PRINT           reduce using rule 18 (statement -> IDENTIFIER .)
+    INT             reduce using rule 18 (statement -> IDENTIFIER .)
+    REAL            reduce using rule 18 (statement -> IDENTIFIER .)
+    BOOLEAN         reduce using rule 18 (statement -> IDENTIFIER .)
+    STRING          reduce using rule 18 (statement -> IDENTIFIER .)
+    R_BRACE         reduce using rule 18 (statement -> IDENTIFIER .)
+    R_PARENTHESIS   reduce using rule 18 (statement -> IDENTIFIER .)
+    EQUAL           reduce using rule 18 (statement -> IDENTIFIER .)
+    NOT_EQUAL       reduce using rule 18 (statement -> IDENTIFIER .)
+    GREATER         reduce using rule 18 (statement -> IDENTIFIER .)
+    LESS            reduce using rule 18 (statement -> IDENTIFIER .)
+    GREATER_EQUAL   reduce using rule 18 (statement -> IDENTIFIER .)
+    LESS_EQUAL      reduce using rule 18 (statement -> IDENTIFIER .)
+    AND             reduce using rule 18 (statement -> IDENTIFIER .)
+    OR              reduce using rule 18 (statement -> IDENTIFIER .)
+    SEMMICOLON      reduce using rule 18 (statement -> IDENTIFIER .)
+
+
+state 34
+
+    (17) var_declaration -> IDENTIFIER ASSING statement .
+    (19) statement -> statement . PLUS statement
+    (20) statement -> statement . MINUS statement
+    (21) statement -> statement . TIMES statement
+    (22) statement -> statement . DIVIDE statement
+
+    END             reduce using rule 17 (var_declaration -> IDENTIFIER ASSING statement .)
+    IDENTIFIER      reduce using rule 17 (var_declaration -> IDENTIFIER ASSING statement .)
+    IF              reduce using rule 17 (var_declaration -> IDENTIFIER ASSING statement .)
+    FOR             reduce using rule 17 (var_declaration -> IDENTIFIER ASSING statement .)
+    WHILE           reduce using rule 17 (var_declaration -> IDENTIFIER ASSING statement .)
+    PRINT           reduce using rule 17 (var_declaration -> IDENTIFIER ASSING statement .)
+    INT             reduce using rule 17 (var_declaration -> IDENTIFIER ASSING statement .)
+    REAL            reduce using rule 17 (var_declaration -> IDENTIFIER ASSING statement .)
+    BOOLEAN         reduce using rule 17 (var_declaration -> IDENTIFIER ASSING statement .)
+    STRING          reduce using rule 17 (var_declaration -> IDENTIFIER ASSING statement .)
+    R_BRACE         reduce using rule 17 (var_declaration -> IDENTIFIER ASSING statement .)
+    R_PARENTHESIS   reduce using rule 17 (var_declaration -> IDENTIFIER ASSING statement .)
+    PLUS            shift and go to state 49
+    MINUS           shift and go to state 50
+    TIMES           shift and go to state 51
+    DIVIDE          shift and go to state 52
+
+
+state 35
+
+    (23) statement -> INT .
+
+    PLUS            reduce using rule 23 (statement -> INT .)
+    MINUS           reduce using rule 23 (statement -> INT .)
+    TIMES           reduce using rule 23 (statement -> INT .)
+    DIVIDE          reduce using rule 23 (statement -> INT .)
+    END             reduce using rule 23 (statement -> INT .)
+    IDENTIFIER      reduce using rule 23 (statement -> INT .)
+    IF              reduce using rule 23 (statement -> INT .)
+    FOR             reduce using rule 23 (statement -> INT .)
+    WHILE           reduce using rule 23 (statement -> INT .)
+    PRINT           reduce using rule 23 (statement -> INT .)
+    INT             reduce using rule 23 (statement -> INT .)
+    REAL            reduce using rule 23 (statement -> INT .)
+    BOOLEAN         reduce using rule 23 (statement -> INT .)
+    STRING          reduce using rule 23 (statement -> INT .)
+    R_BRACE         reduce using rule 23 (statement -> INT .)
+    R_PARENTHESIS   reduce using rule 23 (statement -> INT .)
+    EQUAL           reduce using rule 23 (statement -> INT .)
+    NOT_EQUAL       reduce using rule 23 (statement -> INT .)
+    GREATER         reduce using rule 23 (statement -> INT .)
+    LESS            reduce using rule 23 (statement -> INT .)
+    GREATER_EQUAL   reduce using rule 23 (statement -> INT .)
+    LESS_EQUAL      reduce using rule 23 (statement -> INT .)
+    AND             reduce using rule 23 (statement -> INT .)
+    OR              reduce using rule 23 (statement -> INT .)
+    SEMMICOLON      reduce using rule 23 (statement -> INT .)
+
+
+state 36
+
+    (24) statement -> REAL .
+
+    PLUS            reduce using rule 24 (statement -> REAL .)
+    MINUS           reduce using rule 24 (statement -> REAL .)
+    TIMES           reduce using rule 24 (statement -> REAL .)
+    DIVIDE          reduce using rule 24 (statement -> REAL .)
+    END             reduce using rule 24 (statement -> REAL .)
+    IDENTIFIER      reduce using rule 24 (statement -> REAL .)
+    IF              reduce using rule 24 (statement -> REAL .)
+    FOR             reduce using rule 24 (statement -> REAL .)
+    WHILE           reduce using rule 24 (statement -> REAL .)
+    PRINT           reduce using rule 24 (statement -> REAL .)
+    INT             reduce using rule 24 (statement -> REAL .)
+    REAL            reduce using rule 24 (statement -> REAL .)
+    BOOLEAN         reduce using rule 24 (statement -> REAL .)
+    STRING          reduce using rule 24 (statement -> REAL .)
+    R_BRACE         reduce using rule 24 (statement -> REAL .)
+    R_PARENTHESIS   reduce using rule 24 (statement -> REAL .)
+    EQUAL           reduce using rule 24 (statement -> REAL .)
+    NOT_EQUAL       reduce using rule 24 (statement -> REAL .)
+    GREATER         reduce using rule 24 (statement -> REAL .)
+    LESS            reduce using rule 24 (statement -> REAL .)
+    GREATER_EQUAL   reduce using rule 24 (statement -> REAL .)
+    LESS_EQUAL      reduce using rule 24 (statement -> REAL .)
+    AND             reduce using rule 24 (statement -> REAL .)
+    OR              reduce using rule 24 (statement -> REAL .)
+    SEMMICOLON      reduce using rule 24 (statement -> REAL .)
+
+
+state 37
+
+    (25) statement -> BOOLEAN .
+
+    PLUS            reduce using rule 25 (statement -> BOOLEAN .)
+    MINUS           reduce using rule 25 (statement -> BOOLEAN .)
+    TIMES           reduce using rule 25 (statement -> BOOLEAN .)
+    DIVIDE          reduce using rule 25 (statement -> BOOLEAN .)
+    END             reduce using rule 25 (statement -> BOOLEAN .)
+    IDENTIFIER      reduce using rule 25 (statement -> BOOLEAN .)
+    IF              reduce using rule 25 (statement -> BOOLEAN .)
+    FOR             reduce using rule 25 (statement -> BOOLEAN .)
+    WHILE           reduce using rule 25 (statement -> BOOLEAN .)
+    PRINT           reduce using rule 25 (statement -> BOOLEAN .)
+    INT             reduce using rule 25 (statement -> BOOLEAN .)
+    REAL            reduce using rule 25 (statement -> BOOLEAN .)
+    BOOLEAN         reduce using rule 25 (statement -> BOOLEAN .)
+    STRING          reduce using rule 25 (statement -> BOOLEAN .)
+    R_BRACE         reduce using rule 25 (statement -> BOOLEAN .)
+    R_PARENTHESIS   reduce using rule 25 (statement -> BOOLEAN .)
+    EQUAL           reduce using rule 25 (statement -> BOOLEAN .)
+    NOT_EQUAL       reduce using rule 25 (statement -> BOOLEAN .)
+    GREATER         reduce using rule 25 (statement -> BOOLEAN .)
+    LESS            reduce using rule 25 (statement -> BOOLEAN .)
+    GREATER_EQUAL   reduce using rule 25 (statement -> BOOLEAN .)
+    LESS_EQUAL      reduce using rule 25 (statement -> BOOLEAN .)
+    AND             reduce using rule 25 (statement -> BOOLEAN .)
+    OR              reduce using rule 25 (statement -> BOOLEAN .)
+    SEMMICOLON      reduce using rule 25 (statement -> BOOLEAN .)
+
+
+state 38
+
+    (26) statement -> STRING .
+
+    PLUS            reduce using rule 26 (statement -> STRING .)
+    MINUS           reduce using rule 26 (statement -> STRING .)
+    TIMES           reduce using rule 26 (statement -> STRING .)
+    DIVIDE          reduce using rule 26 (statement -> STRING .)
+    END             reduce using rule 26 (statement -> STRING .)
+    IDENTIFIER      reduce using rule 26 (statement -> STRING .)
+    IF              reduce using rule 26 (statement -> STRING .)
+    FOR             reduce using rule 26 (statement -> STRING .)
+    WHILE           reduce using rule 26 (statement -> STRING .)
+    PRINT           reduce using rule 26 (statement -> STRING .)
+    INT             reduce using rule 26 (statement -> STRING .)
+    REAL            reduce using rule 26 (statement -> STRING .)
+    BOOLEAN         reduce using rule 26 (statement -> STRING .)
+    STRING          reduce using rule 26 (statement -> STRING .)
+    R_BRACE         reduce using rule 26 (statement -> STRING .)
+    R_PARENTHESIS   reduce using rule 26 (statement -> STRING .)
+    EQUAL           reduce using rule 26 (statement -> STRING .)
+    NOT_EQUAL       reduce using rule 26 (statement -> STRING .)
+    GREATER         reduce using rule 26 (statement -> STRING .)
+    LESS            reduce using rule 26 (statement -> STRING .)
+    GREATER_EQUAL   reduce using rule 26 (statement -> STRING .)
+    LESS_EQUAL      reduce using rule 26 (statement -> STRING .)
+    AND             reduce using rule 26 (statement -> STRING .)
+    OR              reduce using rule 26 (statement -> STRING .)
+    SEMMICOLON      reduce using rule 26 (statement -> STRING .)
+
+
+state 39
+
+    (27) statement -> L_PARENTHESIS . statement R_PARENTHESIS
+    (28) statement -> L_PARENTHESIS . conditional R_PARENTHESIS
+    (18) statement -> . IDENTIFIER
+    (19) statement -> . statement PLUS statement
+    (20) statement -> . statement MINUS statement
+    (21) statement -> . statement TIMES statement
+    (22) statement -> . statement DIVIDE statement
+    (23) statement -> . INT
+    (24) statement -> . REAL
+    (25) statement -> . BOOLEAN
+    (26) statement -> . STRING
+    (27) statement -> . L_PARENTHESIS statement R_PARENTHESIS
+    (28) statement -> . L_PARENTHESIS conditional R_PARENTHESIS
+    (29) conditional -> . conditional EQUAL conditional
+    (30) conditional -> . conditional NOT_EQUAL conditional
+    (31) conditional -> . conditional GREATER conditional
+    (32) conditional -> . conditional LESS conditional
+    (33) conditional -> . conditional GREATER_EQUAL conditional
+    (34) conditional -> . conditional LESS_EQUAL conditional
+    (35) conditional -> . conditional AND conditional
+    (36) conditional -> . conditional OR conditional
+    (37) conditional -> . TRUE
+    (38) conditional -> . FALSE
+    (39) conditional -> . statement
+
+    IDENTIFIER      shift and go to state 33
+    INT             shift and go to state 35
+    REAL            shift and go to state 36
+    BOOLEAN         shift and go to state 37
+    STRING          shift and go to state 38
+    L_PARENTHESIS   shift and go to state 39
+    TRUE            shift and go to state 41
+    FALSE           shift and go to state 42
+
+    statement                      shift and go to state 53
+    conditional                    shift and go to state 54
+
+state 40
+
+    (40) if_statement -> IF L_PARENTHESIS conditional . R_PARENTHESIS THEN L_BRACE expressions R_BRACE
+    (41) if_statement -> IF L_PARENTHESIS conditional . R_PARENTHESIS THEN L_BRACE expressions R_BRACE ELSE L_BRACE expressions R_BRACE
+    (29) conditional -> conditional . EQUAL conditional
+    (30) conditional -> conditional . NOT_EQUAL conditional
+    (31) conditional -> conditional . GREATER conditional
+    (32) conditional -> conditional . LESS conditional
+    (33) conditional -> conditional . GREATER_EQUAL conditional
+    (34) conditional -> conditional . LESS_EQUAL conditional
+    (35) conditional -> conditional . AND conditional
+    (36) conditional -> conditional . OR conditional
+
+    R_PARENTHESIS   shift and go to state 55
+    EQUAL           shift and go to state 56
+    NOT_EQUAL       shift and go to state 57
+    GREATER         shift and go to state 58
+    LESS            shift and go to state 59
+    GREATER_EQUAL   shift and go to state 60
+    LESS_EQUAL      shift and go to state 61
+    AND             shift and go to state 62
+    OR              shift and go to state 63
+
+
+state 41
+
+    (37) conditional -> TRUE .
+
+    R_PARENTHESIS   reduce using rule 37 (conditional -> TRUE .)
+    EQUAL           reduce using rule 37 (conditional -> TRUE .)
+    NOT_EQUAL       reduce using rule 37 (conditional -> TRUE .)
+    GREATER         reduce using rule 37 (conditional -> TRUE .)
+    LESS            reduce using rule 37 (conditional -> TRUE .)
+    GREATER_EQUAL   reduce using rule 37 (conditional -> TRUE .)
+    LESS_EQUAL      reduce using rule 37 (conditional -> TRUE .)
+    AND             reduce using rule 37 (conditional -> TRUE .)
+    OR              reduce using rule 37 (conditional -> TRUE .)
+    SEMMICOLON      reduce using rule 37 (conditional -> TRUE .)
+
+
+state 42
+
+    (38) conditional -> FALSE .
+
+    R_PARENTHESIS   reduce using rule 38 (conditional -> FALSE .)
+    EQUAL           reduce using rule 38 (conditional -> FALSE .)
+    NOT_EQUAL       reduce using rule 38 (conditional -> FALSE .)
+    GREATER         reduce using rule 38 (conditional -> FALSE .)
+    LESS            reduce using rule 38 (conditional -> FALSE .)
+    GREATER_EQUAL   reduce using rule 38 (conditional -> FALSE .)
+    LESS_EQUAL      reduce using rule 38 (conditional -> FALSE .)
+    AND             reduce using rule 38 (conditional -> FALSE .)
+    OR              reduce using rule 38 (conditional -> FALSE .)
+    SEMMICOLON      reduce using rule 38 (conditional -> FALSE .)
+
+
+state 43
+
+    (39) conditional -> statement .
+    (19) statement -> statement . PLUS statement
+    (20) statement -> statement . MINUS statement
+    (21) statement -> statement . TIMES statement
+    (22) statement -> statement . DIVIDE statement
+
+    R_PARENTHESIS   reduce using rule 39 (conditional -> statement .)
+    EQUAL           reduce using rule 39 (conditional -> statement .)
+    NOT_EQUAL       reduce using rule 39 (conditional -> statement .)
+    GREATER         reduce using rule 39 (conditional -> statement .)
+    LESS            reduce using rule 39 (conditional -> statement .)
+    GREATER_EQUAL   reduce using rule 39 (conditional -> statement .)
+    LESS_EQUAL      reduce using rule 39 (conditional -> statement .)
+    AND             reduce using rule 39 (conditional -> statement .)
+    OR              reduce using rule 39 (conditional -> statement .)
+    SEMMICOLON      reduce using rule 39 (conditional -> statement .)
+    PLUS            shift and go to state 49
+    MINUS           shift and go to state 50
+    TIMES           shift and go to state 51
+    DIVIDE          shift and go to state 52
+
+
+state 44
+
+    (42) for_loop -> FOR L_PARENTHESIS statement . SEMMICOLON conditional SEMMICOLON var_declaration R_PARENTHESIS L_BRACE expressions R_BRACE
+    (19) statement -> statement . PLUS statement
+    (20) statement -> statement . MINUS statement
+    (21) statement -> statement . TIMES statement
+    (22) statement -> statement . DIVIDE statement
+
+    SEMMICOLON      shift and go to state 64
+    PLUS            shift and go to state 49
+    MINUS           shift and go to state 50
+    TIMES           shift and go to state 51
+    DIVIDE          shift and go to state 52
+
+
+state 45
+
+    (43) while_loop -> WHILE L_PARENTHESIS conditional . R_PARENTHESIS DO L_BRACE expressions R_BRACE
+    (29) conditional -> conditional . EQUAL conditional
+    (30) conditional -> conditional . NOT_EQUAL conditional
+    (31) conditional -> conditional . GREATER conditional
+    (32) conditional -> conditional . LESS conditional
+    (33) conditional -> conditional . GREATER_EQUAL conditional
+    (34) conditional -> conditional . LESS_EQUAL conditional
+    (35) conditional -> conditional . AND conditional
+    (36) conditional -> conditional . OR conditional
+
+    R_PARENTHESIS   shift and go to state 65
+    EQUAL           shift and go to state 56
+    NOT_EQUAL       shift and go to state 57
+    GREATER         shift and go to state 58
+    LESS            shift and go to state 59
+    GREATER_EQUAL   shift and go to state 60
+    LESS_EQUAL      shift and go to state 61
+    AND             shift and go to state 62
+    OR              shift and go to state 63
+
+
+state 46
+
+    (44) print -> PRINT L_PARENTHESIS statement . R_PARENTHESIS
+    (19) statement -> statement . PLUS statement
+    (20) statement -> statement . MINUS statement
+    (21) statement -> statement . TIMES statement
+    (22) statement -> statement . DIVIDE statement
+
+    R_PARENTHESIS   shift and go to state 66
+    PLUS            shift and go to state 49
+    MINUS           shift and go to state 50
+    TIMES           shift and go to state 51
+    DIVIDE          shift and go to state 52
+
+
+state 47
+
+    (1) program -> PROGRAM MAIN expressions END PROGRAM MAIN .
+
+    $end            reduce using rule 1 (program -> PROGRAM MAIN expressions END PROGRAM MAIN .)
+
+
+state 48
+
+    (15) declarations -> IDENTIFIER COMMA . declarations
+    (15) declarations -> . IDENTIFIER COMMA declarations
+    (16) declarations -> . IDENTIFIER
+
+    IDENTIFIER      shift and go to state 32
+
+    declarations                   shift and go to state 67
+
+state 49
+
+    (19) statement -> statement PLUS . statement
+    (18) statement -> . IDENTIFIER
+    (19) statement -> . statement PLUS statement
+    (20) statement -> . statement MINUS statement
+    (21) statement -> . statement TIMES statement
+    (22) statement -> . statement DIVIDE statement
+    (23) statement -> . INT
+    (24) statement -> . REAL
+    (25) statement -> . BOOLEAN
+    (26) statement -> . STRING
+    (27) statement -> . L_PARENTHESIS statement R_PARENTHESIS
+    (28) statement -> . L_PARENTHESIS conditional R_PARENTHESIS
+
+    IDENTIFIER      shift and go to state 33
+    INT             shift and go to state 35
+    REAL            shift and go to state 36
+    BOOLEAN         shift and go to state 37
+    STRING          shift and go to state 38
+    L_PARENTHESIS   shift and go to state 39
+
+    statement                      shift and go to state 68
+
+state 50
+
+    (20) statement -> statement MINUS . statement
+    (18) statement -> . IDENTIFIER
+    (19) statement -> . statement PLUS statement
+    (20) statement -> . statement MINUS statement
+    (21) statement -> . statement TIMES statement
+    (22) statement -> . statement DIVIDE statement
+    (23) statement -> . INT
+    (24) statement -> . REAL
+    (25) statement -> . BOOLEAN
+    (26) statement -> . STRING
+    (27) statement -> . L_PARENTHESIS statement R_PARENTHESIS
+    (28) statement -> . L_PARENTHESIS conditional R_PARENTHESIS
+
+    IDENTIFIER      shift and go to state 33
+    INT             shift and go to state 35
+    REAL            shift and go to state 36
+    BOOLEAN         shift and go to state 37
+    STRING          shift and go to state 38
+    L_PARENTHESIS   shift and go to state 39
+
+    statement                      shift and go to state 69
+
+state 51
+
+    (21) statement -> statement TIMES . statement
+    (18) statement -> . IDENTIFIER
+    (19) statement -> . statement PLUS statement
+    (20) statement -> . statement MINUS statement
+    (21) statement -> . statement TIMES statement
+    (22) statement -> . statement DIVIDE statement
+    (23) statement -> . INT
+    (24) statement -> . REAL
+    (25) statement -> . BOOLEAN
+    (26) statement -> . STRING
+    (27) statement -> . L_PARENTHESIS statement R_PARENTHESIS
+    (28) statement -> . L_PARENTHESIS conditional R_PARENTHESIS
+
+    IDENTIFIER      shift and go to state 33
+    INT             shift and go to state 35
+    REAL            shift and go to state 36
+    BOOLEAN         shift and go to state 37
+    STRING          shift and go to state 38
+    L_PARENTHESIS   shift and go to state 39
+
+    statement                      shift and go to state 70
+
+state 52
+
+    (22) statement -> statement DIVIDE . statement
+    (18) statement -> . IDENTIFIER
+    (19) statement -> . statement PLUS statement
+    (20) statement -> . statement MINUS statement
+    (21) statement -> . statement TIMES statement
+    (22) statement -> . statement DIVIDE statement
+    (23) statement -> . INT
+    (24) statement -> . REAL
+    (25) statement -> . BOOLEAN
+    (26) statement -> . STRING
+    (27) statement -> . L_PARENTHESIS statement R_PARENTHESIS
+    (28) statement -> . L_PARENTHESIS conditional R_PARENTHESIS
+
+    IDENTIFIER      shift and go to state 33
+    INT             shift and go to state 35
+    REAL            shift and go to state 36
+    BOOLEAN         shift and go to state 37
+    STRING          shift and go to state 38
+    L_PARENTHESIS   shift and go to state 39
+
+    statement                      shift and go to state 71
+
+state 53
+
+    (27) statement -> L_PARENTHESIS statement . R_PARENTHESIS
+    (19) statement -> statement . PLUS statement
+    (20) statement -> statement . MINUS statement
+    (21) statement -> statement . TIMES statement
+    (22) statement -> statement . DIVIDE statement
+    (39) conditional -> statement .
+
+  ! shift/reduce conflict for R_PARENTHESIS resolved as shift
+    R_PARENTHESIS   shift and go to state 72
+    PLUS            shift and go to state 49
+    MINUS           shift and go to state 50
+    TIMES           shift and go to state 51
+    DIVIDE          shift and go to state 52
+    EQUAL           reduce using rule 39 (conditional -> statement .)
+    NOT_EQUAL       reduce using rule 39 (conditional -> statement .)
+    GREATER         reduce using rule 39 (conditional -> statement .)
+    LESS            reduce using rule 39 (conditional -> statement .)
+    GREATER_EQUAL   reduce using rule 39 (conditional -> statement .)
+    LESS_EQUAL      reduce using rule 39 (conditional -> statement .)
+    AND             reduce using rule 39 (conditional -> statement .)
+    OR              reduce using rule 39 (conditional -> statement .)
+
+  ! R_PARENTHESIS   [ reduce using rule 39 (conditional -> statement .) ]
+
+
+state 54
+
+    (28) statement -> L_PARENTHESIS conditional . R_PARENTHESIS
+    (29) conditional -> conditional . EQUAL conditional
+    (30) conditional -> conditional . NOT_EQUAL conditional
+    (31) conditional -> conditional . GREATER conditional
+    (32) conditional -> conditional . LESS conditional
+    (33) conditional -> conditional . GREATER_EQUAL conditional
+    (34) conditional -> conditional . LESS_EQUAL conditional
+    (35) conditional -> conditional . AND conditional
+    (36) conditional -> conditional . OR conditional
+
+    R_PARENTHESIS   shift and go to state 73
+    EQUAL           shift and go to state 56
+    NOT_EQUAL       shift and go to state 57
+    GREATER         shift and go to state 58
+    LESS            shift and go to state 59
+    GREATER_EQUAL   shift and go to state 60
+    LESS_EQUAL      shift and go to state 61
+    AND             shift and go to state 62
+    OR              shift and go to state 63
+
+
+state 55
+
+    (40) if_statement -> IF L_PARENTHESIS conditional R_PARENTHESIS . THEN L_BRACE expressions R_BRACE
+    (41) if_statement -> IF L_PARENTHESIS conditional R_PARENTHESIS . THEN L_BRACE expressions R_BRACE ELSE L_BRACE expressions R_BRACE
+
+    THEN            shift and go to state 74
+
+
+state 56
+
+    (29) conditional -> conditional EQUAL . conditional
+    (29) conditional -> . conditional EQUAL conditional
+    (30) conditional -> . conditional NOT_EQUAL conditional
+    (31) conditional -> . conditional GREATER conditional
+    (32) conditional -> . conditional LESS conditional
+    (33) conditional -> . conditional GREATER_EQUAL conditional
+    (34) conditional -> . conditional LESS_EQUAL conditional
+    (35) conditional -> . conditional AND conditional
+    (36) conditional -> . conditional OR conditional
+    (37) conditional -> . TRUE
+    (38) conditional -> . FALSE
+    (39) conditional -> . statement
+    (18) statement -> . IDENTIFIER
+    (19) statement -> . statement PLUS statement
+    (20) statement -> . statement MINUS statement
+    (21) statement -> . statement TIMES statement
+    (22) statement -> . statement DIVIDE statement
+    (23) statement -> . INT
+    (24) statement -> . REAL
+    (25) statement -> . BOOLEAN
+    (26) statement -> . STRING
+    (27) statement -> . L_PARENTHESIS statement R_PARENTHESIS
+    (28) statement -> . L_PARENTHESIS conditional R_PARENTHESIS
+
+    TRUE            shift and go to state 41
+    FALSE           shift and go to state 42
+    IDENTIFIER      shift and go to state 33
+    INT             shift and go to state 35
+    REAL            shift and go to state 36
+    BOOLEAN         shift and go to state 37
+    STRING          shift and go to state 38
+    L_PARENTHESIS   shift and go to state 39
+
+    conditional                    shift and go to state 75
+    statement                      shift and go to state 43
+
+state 57
+
+    (30) conditional -> conditional NOT_EQUAL . conditional
+    (29) conditional -> . conditional EQUAL conditional
+    (30) conditional -> . conditional NOT_EQUAL conditional
+    (31) conditional -> . conditional GREATER conditional
+    (32) conditional -> . conditional LESS conditional
+    (33) conditional -> . conditional GREATER_EQUAL conditional
+    (34) conditional -> . conditional LESS_EQUAL conditional
+    (35) conditional -> . conditional AND conditional
+    (36) conditional -> . conditional OR conditional
+    (37) conditional -> . TRUE
+    (38) conditional -> . FALSE
+    (39) conditional -> . statement
+    (18) statement -> . IDENTIFIER
+    (19) statement -> . statement PLUS statement
+    (20) statement -> . statement MINUS statement
+    (21) statement -> . statement TIMES statement
+    (22) statement -> . statement DIVIDE statement
+    (23) statement -> . INT
+    (24) statement -> . REAL
+    (25) statement -> . BOOLEAN
+    (26) statement -> . STRING
+    (27) statement -> . L_PARENTHESIS statement R_PARENTHESIS
+    (28) statement -> . L_PARENTHESIS conditional R_PARENTHESIS
+
+    TRUE            shift and go to state 41
+    FALSE           shift and go to state 42
+    IDENTIFIER      shift and go to state 33
+    INT             shift and go to state 35
+    REAL            shift and go to state 36
+    BOOLEAN         shift and go to state 37
+    STRING          shift and go to state 38
+    L_PARENTHESIS   shift and go to state 39
+
+    conditional                    shift and go to state 76
+    statement                      shift and go to state 43
+
+state 58
+
+    (31) conditional -> conditional GREATER . conditional
+    (29) conditional -> . conditional EQUAL conditional
+    (30) conditional -> . conditional NOT_EQUAL conditional
+    (31) conditional -> . conditional GREATER conditional
+    (32) conditional -> . conditional LESS conditional
+    (33) conditional -> . conditional GREATER_EQUAL conditional
+    (34) conditional -> . conditional LESS_EQUAL conditional
+    (35) conditional -> . conditional AND conditional
+    (36) conditional -> . conditional OR conditional
+    (37) conditional -> . TRUE
+    (38) conditional -> . FALSE
+    (39) conditional -> . statement
+    (18) statement -> . IDENTIFIER
+    (19) statement -> . statement PLUS statement
+    (20) statement -> . statement MINUS statement
+    (21) statement -> . statement TIMES statement
+    (22) statement -> . statement DIVIDE statement
+    (23) statement -> . INT
+    (24) statement -> . REAL
+    (25) statement -> . BOOLEAN
+    (26) statement -> . STRING
+    (27) statement -> . L_PARENTHESIS statement R_PARENTHESIS
+    (28) statement -> . L_PARENTHESIS conditional R_PARENTHESIS
+
+    TRUE            shift and go to state 41
+    FALSE           shift and go to state 42
+    IDENTIFIER      shift and go to state 33
+    INT             shift and go to state 35
+    REAL            shift and go to state 36
+    BOOLEAN         shift and go to state 37
+    STRING          shift and go to state 38
+    L_PARENTHESIS   shift and go to state 39
+
+    conditional                    shift and go to state 77
+    statement                      shift and go to state 43
+
+state 59
+
+    (32) conditional -> conditional LESS . conditional
+    (29) conditional -> . conditional EQUAL conditional
+    (30) conditional -> . conditional NOT_EQUAL conditional
+    (31) conditional -> . conditional GREATER conditional
+    (32) conditional -> . conditional LESS conditional
+    (33) conditional -> . conditional GREATER_EQUAL conditional
+    (34) conditional -> . conditional LESS_EQUAL conditional
+    (35) conditional -> . conditional AND conditional
+    (36) conditional -> . conditional OR conditional
+    (37) conditional -> . TRUE
+    (38) conditional -> . FALSE
+    (39) conditional -> . statement
+    (18) statement -> . IDENTIFIER
+    (19) statement -> . statement PLUS statement
+    (20) statement -> . statement MINUS statement
+    (21) statement -> . statement TIMES statement
+    (22) statement -> . statement DIVIDE statement
+    (23) statement -> . INT
+    (24) statement -> . REAL
+    (25) statement -> . BOOLEAN
+    (26) statement -> . STRING
+    (27) statement -> . L_PARENTHESIS statement R_PARENTHESIS
+    (28) statement -> . L_PARENTHESIS conditional R_PARENTHESIS
+
+    TRUE            shift and go to state 41
+    FALSE           shift and go to state 42
+    IDENTIFIER      shift and go to state 33
+    INT             shift and go to state 35
+    REAL            shift and go to state 36
+    BOOLEAN         shift and go to state 37
+    STRING          shift and go to state 38
+    L_PARENTHESIS   shift and go to state 39
+
+    conditional                    shift and go to state 78
+    statement                      shift and go to state 43
+
+state 60
+
+    (33) conditional -> conditional GREATER_EQUAL . conditional
+    (29) conditional -> . conditional EQUAL conditional
+    (30) conditional -> . conditional NOT_EQUAL conditional
+    (31) conditional -> . conditional GREATER conditional
+    (32) conditional -> . conditional LESS conditional
+    (33) conditional -> . conditional GREATER_EQUAL conditional
+    (34) conditional -> . conditional LESS_EQUAL conditional
+    (35) conditional -> . conditional AND conditional
+    (36) conditional -> . conditional OR conditional
+    (37) conditional -> . TRUE
+    (38) conditional -> . FALSE
+    (39) conditional -> . statement
+    (18) statement -> . IDENTIFIER
+    (19) statement -> . statement PLUS statement
+    (20) statement -> . statement MINUS statement
+    (21) statement -> . statement TIMES statement
+    (22) statement -> . statement DIVIDE statement
+    (23) statement -> . INT
+    (24) statement -> . REAL
+    (25) statement -> . BOOLEAN
+    (26) statement -> . STRING
+    (27) statement -> . L_PARENTHESIS statement R_PARENTHESIS
+    (28) statement -> . L_PARENTHESIS conditional R_PARENTHESIS
+
+    TRUE            shift and go to state 41
+    FALSE           shift and go to state 42
+    IDENTIFIER      shift and go to state 33
+    INT             shift and go to state 35
+    REAL            shift and go to state 36
+    BOOLEAN         shift and go to state 37
+    STRING          shift and go to state 38
+    L_PARENTHESIS   shift and go to state 39
+
+    conditional                    shift and go to state 79
+    statement                      shift and go to state 43
+
+state 61
+
+    (34) conditional -> conditional LESS_EQUAL . conditional
+    (29) conditional -> . conditional EQUAL conditional
+    (30) conditional -> . conditional NOT_EQUAL conditional
+    (31) conditional -> . conditional GREATER conditional
+    (32) conditional -> . conditional LESS conditional
+    (33) conditional -> . conditional GREATER_EQUAL conditional
+    (34) conditional -> . conditional LESS_EQUAL conditional
+    (35) conditional -> . conditional AND conditional
+    (36) conditional -> . conditional OR conditional
+    (37) conditional -> . TRUE
+    (38) conditional -> . FALSE
+    (39) conditional -> . statement
+    (18) statement -> . IDENTIFIER
+    (19) statement -> . statement PLUS statement
+    (20) statement -> . statement MINUS statement
+    (21) statement -> . statement TIMES statement
+    (22) statement -> . statement DIVIDE statement
+    (23) statement -> . INT
+    (24) statement -> . REAL
+    (25) statement -> . BOOLEAN
+    (26) statement -> . STRING
+    (27) statement -> . L_PARENTHESIS statement R_PARENTHESIS
+    (28) statement -> . L_PARENTHESIS conditional R_PARENTHESIS
+
+    TRUE            shift and go to state 41
+    FALSE           shift and go to state 42
+    IDENTIFIER      shift and go to state 33
+    INT             shift and go to state 35
+    REAL            shift and go to state 36
+    BOOLEAN         shift and go to state 37
+    STRING          shift and go to state 38
+    L_PARENTHESIS   shift and go to state 39
+
+    conditional                    shift and go to state 80
+    statement                      shift and go to state 43
+
+state 62
+
+    (35) conditional -> conditional AND . conditional
+    (29) conditional -> . conditional EQUAL conditional
+    (30) conditional -> . conditional NOT_EQUAL conditional
+    (31) conditional -> . conditional GREATER conditional
+    (32) conditional -> . conditional LESS conditional
+    (33) conditional -> . conditional GREATER_EQUAL conditional
+    (34) conditional -> . conditional LESS_EQUAL conditional
+    (35) conditional -> . conditional AND conditional
+    (36) conditional -> . conditional OR conditional
+    (37) conditional -> . TRUE
+    (38) conditional -> . FALSE
+    (39) conditional -> . statement
+    (18) statement -> . IDENTIFIER
+    (19) statement -> . statement PLUS statement
+    (20) statement -> . statement MINUS statement
+    (21) statement -> . statement TIMES statement
+    (22) statement -> . statement DIVIDE statement
+    (23) statement -> . INT
+    (24) statement -> . REAL
+    (25) statement -> . BOOLEAN
+    (26) statement -> . STRING
+    (27) statement -> . L_PARENTHESIS statement R_PARENTHESIS
+    (28) statement -> . L_PARENTHESIS conditional R_PARENTHESIS
+
+    TRUE            shift and go to state 41
+    FALSE           shift and go to state 42
+    IDENTIFIER      shift and go to state 33
+    INT             shift and go to state 35
+    REAL            shift and go to state 36
+    BOOLEAN         shift and go to state 37
+    STRING          shift and go to state 38
+    L_PARENTHESIS   shift and go to state 39
+
+    conditional                    shift and go to state 81
+    statement                      shift and go to state 43
+
+state 63
+
+    (36) conditional -> conditional OR . conditional
+    (29) conditional -> . conditional EQUAL conditional
+    (30) conditional -> . conditional NOT_EQUAL conditional
+    (31) conditional -> . conditional GREATER conditional
+    (32) conditional -> . conditional LESS conditional
+    (33) conditional -> . conditional GREATER_EQUAL conditional
+    (34) conditional -> . conditional LESS_EQUAL conditional
+    (35) conditional -> . conditional AND conditional
+    (36) conditional -> . conditional OR conditional
+    (37) conditional -> . TRUE
+    (38) conditional -> . FALSE
+    (39) conditional -> . statement
+    (18) statement -> . IDENTIFIER
+    (19) statement -> . statement PLUS statement
+    (20) statement -> . statement MINUS statement
+    (21) statement -> . statement TIMES statement
+    (22) statement -> . statement DIVIDE statement
+    (23) statement -> . INT
+    (24) statement -> . REAL
+    (25) statement -> . BOOLEAN
+    (26) statement -> . STRING
+    (27) statement -> . L_PARENTHESIS statement R_PARENTHESIS
+    (28) statement -> . L_PARENTHESIS conditional R_PARENTHESIS
+
+    TRUE            shift and go to state 41
+    FALSE           shift and go to state 42
+    IDENTIFIER      shift and go to state 33
+    INT             shift and go to state 35
+    REAL            shift and go to state 36
+    BOOLEAN         shift and go to state 37
+    STRING          shift and go to state 38
+    L_PARENTHESIS   shift and go to state 39
+
+    conditional                    shift and go to state 82
+    statement                      shift and go to state 43
+
+state 64
+
+    (42) for_loop -> FOR L_PARENTHESIS statement SEMMICOLON . conditional SEMMICOLON var_declaration R_PARENTHESIS L_BRACE expressions R_BRACE
+    (29) conditional -> . conditional EQUAL conditional
+    (30) conditional -> . conditional NOT_EQUAL conditional
+    (31) conditional -> . conditional GREATER conditional
+    (32) conditional -> . conditional LESS conditional
+    (33) conditional -> . conditional GREATER_EQUAL conditional
+    (34) conditional -> . conditional LESS_EQUAL conditional
+    (35) conditional -> . conditional AND conditional
+    (36) conditional -> . conditional OR conditional
+    (37) conditional -> . TRUE
+    (38) conditional -> . FALSE
+    (39) conditional -> . statement
+    (18) statement -> . IDENTIFIER
+    (19) statement -> . statement PLUS statement
+    (20) statement -> . statement MINUS statement
+    (21) statement -> . statement TIMES statement
+    (22) statement -> . statement DIVIDE statement
+    (23) statement -> . INT
+    (24) statement -> . REAL
+    (25) statement -> . BOOLEAN
+    (26) statement -> . STRING
+    (27) statement -> . L_PARENTHESIS statement R_PARENTHESIS
+    (28) statement -> . L_PARENTHESIS conditional R_PARENTHESIS
+
+    TRUE            shift and go to state 41
+    FALSE           shift and go to state 42
+    IDENTIFIER      shift and go to state 33
+    INT             shift and go to state 35
+    REAL            shift and go to state 36
+    BOOLEAN         shift and go to state 37
+    STRING          shift and go to state 38
+    L_PARENTHESIS   shift and go to state 39
+
+    statement                      shift and go to state 43
+    conditional                    shift and go to state 83
+
+state 65
+
+    (43) while_loop -> WHILE L_PARENTHESIS conditional R_PARENTHESIS . DO L_BRACE expressions R_BRACE
+
+    DO              shift and go to state 84
+
+
+state 66
+
+    (44) print -> PRINT L_PARENTHESIS statement R_PARENTHESIS .
+
+    END             reduce using rule 44 (print -> PRINT L_PARENTHESIS statement R_PARENTHESIS .)
+    IDENTIFIER      reduce using rule 44 (print -> PRINT L_PARENTHESIS statement R_PARENTHESIS .)
+    IF              reduce using rule 44 (print -> PRINT L_PARENTHESIS statement R_PARENTHESIS .)
+    FOR             reduce using rule 44 (print -> PRINT L_PARENTHESIS statement R_PARENTHESIS .)
+    WHILE           reduce using rule 44 (print -> PRINT L_PARENTHESIS statement R_PARENTHESIS .)
+    PRINT           reduce using rule 44 (print -> PRINT L_PARENTHESIS statement R_PARENTHESIS .)
+    INT             reduce using rule 44 (print -> PRINT L_PARENTHESIS statement R_PARENTHESIS .)
+    REAL            reduce using rule 44 (print -> PRINT L_PARENTHESIS statement R_PARENTHESIS .)
+    BOOLEAN         reduce using rule 44 (print -> PRINT L_PARENTHESIS statement R_PARENTHESIS .)
+    STRING          reduce using rule 44 (print -> PRINT L_PARENTHESIS statement R_PARENTHESIS .)
+    R_BRACE         reduce using rule 44 (print -> PRINT L_PARENTHESIS statement R_PARENTHESIS .)
+
+
+state 67
+
+    (15) declarations -> IDENTIFIER COMMA declarations .
+
+    END             reduce using rule 15 (declarations -> IDENTIFIER COMMA declarations .)
+    IDENTIFIER      reduce using rule 15 (declarations -> IDENTIFIER COMMA declarations .)
+    IF              reduce using rule 15 (declarations -> IDENTIFIER COMMA declarations .)
+    FOR             reduce using rule 15 (declarations -> IDENTIFIER COMMA declarations .)
+    WHILE           reduce using rule 15 (declarations -> IDENTIFIER COMMA declarations .)
+    PRINT           reduce using rule 15 (declarations -> IDENTIFIER COMMA declarations .)
+    INT             reduce using rule 15 (declarations -> IDENTIFIER COMMA declarations .)
+    REAL            reduce using rule 15 (declarations -> IDENTIFIER COMMA declarations .)
+    BOOLEAN         reduce using rule 15 (declarations -> IDENTIFIER COMMA declarations .)
+    STRING          reduce using rule 15 (declarations -> IDENTIFIER COMMA declarations .)
+    R_BRACE         reduce using rule 15 (declarations -> IDENTIFIER COMMA declarations .)
+    R_PARENTHESIS   reduce using rule 15 (declarations -> IDENTIFIER COMMA declarations .)
+
+
+state 68
+
+    (19) statement -> statement PLUS statement .
+    (19) statement -> statement . PLUS statement
+    (20) statement -> statement . MINUS statement
+    (21) statement -> statement . TIMES statement
+    (22) statement -> statement . DIVIDE statement
+
+    PLUS            reduce using rule 19 (statement -> statement PLUS statement .)
+    MINUS           reduce using rule 19 (statement -> statement PLUS statement .)
+    END             reduce using rule 19 (statement -> statement PLUS statement .)
+    IDENTIFIER      reduce using rule 19 (statement -> statement PLUS statement .)
+    IF              reduce using rule 19 (statement -> statement PLUS statement .)
+    FOR             reduce using rule 19 (statement -> statement PLUS statement .)
+    WHILE           reduce using rule 19 (statement -> statement PLUS statement .)
+    PRINT           reduce using rule 19 (statement -> statement PLUS statement .)
+    INT             reduce using rule 19 (statement -> statement PLUS statement .)
+    REAL            reduce using rule 19 (statement -> statement PLUS statement .)
+    BOOLEAN         reduce using rule 19 (statement -> statement PLUS statement .)
+    STRING          reduce using rule 19 (statement -> statement PLUS statement .)
+    R_BRACE         reduce using rule 19 (statement -> statement PLUS statement .)
+    R_PARENTHESIS   reduce using rule 19 (statement -> statement PLUS statement .)
+    EQUAL           reduce using rule 19 (statement -> statement PLUS statement .)
+    NOT_EQUAL       reduce using rule 19 (statement -> statement PLUS statement .)
+    GREATER         reduce using rule 19 (statement -> statement PLUS statement .)
+    LESS            reduce using rule 19 (statement -> statement PLUS statement .)
+    GREATER_EQUAL   reduce using rule 19 (statement -> statement PLUS statement .)
+    LESS_EQUAL      reduce using rule 19 (statement -> statement PLUS statement .)
+    AND             reduce using rule 19 (statement -> statement PLUS statement .)
+    OR              reduce using rule 19 (statement -> statement PLUS statement .)
+    SEMMICOLON      reduce using rule 19 (statement -> statement PLUS statement .)
+    TIMES           shift and go to state 51
+    DIVIDE          shift and go to state 52
+
+  ! TIMES           [ reduce using rule 19 (statement -> statement PLUS statement .) ]
+  ! DIVIDE          [ reduce using rule 19 (statement -> statement PLUS statement .) ]
+  ! PLUS            [ shift and go to state 49 ]
+  ! MINUS           [ shift and go to state 50 ]
+
+
+state 69
+
+    (20) statement -> statement MINUS statement .
+    (19) statement -> statement . PLUS statement
+    (20) statement -> statement . MINUS statement
+    (21) statement -> statement . TIMES statement
+    (22) statement -> statement . DIVIDE statement
+
+    PLUS            reduce using rule 20 (statement -> statement MINUS statement .)
+    MINUS           reduce using rule 20 (statement -> statement MINUS statement .)
+    END             reduce using rule 20 (statement -> statement MINUS statement .)
+    IDENTIFIER      reduce using rule 20 (statement -> statement MINUS statement .)
+    IF              reduce using rule 20 (statement -> statement MINUS statement .)
+    FOR             reduce using rule 20 (statement -> statement MINUS statement .)
+    WHILE           reduce using rule 20 (statement -> statement MINUS statement .)
+    PRINT           reduce using rule 20 (statement -> statement MINUS statement .)
+    INT             reduce using rule 20 (statement -> statement MINUS statement .)
+    REAL            reduce using rule 20 (statement -> statement MINUS statement .)
+    BOOLEAN         reduce using rule 20 (statement -> statement MINUS statement .)
+    STRING          reduce using rule 20 (statement -> statement MINUS statement .)
+    R_BRACE         reduce using rule 20 (statement -> statement MINUS statement .)
+    R_PARENTHESIS   reduce using rule 20 (statement -> statement MINUS statement .)
+    EQUAL           reduce using rule 20 (statement -> statement MINUS statement .)
+    NOT_EQUAL       reduce using rule 20 (statement -> statement MINUS statement .)
+    GREATER         reduce using rule 20 (statement -> statement MINUS statement .)
+    LESS            reduce using rule 20 (statement -> statement MINUS statement .)
+    GREATER_EQUAL   reduce using rule 20 (statement -> statement MINUS statement .)
+    LESS_EQUAL      reduce using rule 20 (statement -> statement MINUS statement .)
+    AND             reduce using rule 20 (statement -> statement MINUS statement .)
+    OR              reduce using rule 20 (statement -> statement MINUS statement .)
+    SEMMICOLON      reduce using rule 20 (statement -> statement MINUS statement .)
+    TIMES           shift and go to state 51
+    DIVIDE          shift and go to state 52
+
+  ! TIMES           [ reduce using rule 20 (statement -> statement MINUS statement .) ]
+  ! DIVIDE          [ reduce using rule 20 (statement -> statement MINUS statement .) ]
+  ! PLUS            [ shift and go to state 49 ]
+  ! MINUS           [ shift and go to state 50 ]
+
+
+state 70
+
+    (21) statement -> statement TIMES statement .
+    (19) statement -> statement . PLUS statement
+    (20) statement -> statement . MINUS statement
+    (21) statement -> statement . TIMES statement
+    (22) statement -> statement . DIVIDE statement
+
+    PLUS            reduce using rule 21 (statement -> statement TIMES statement .)
+    MINUS           reduce using rule 21 (statement -> statement TIMES statement .)
+    TIMES           reduce using rule 21 (statement -> statement TIMES statement .)
+    DIVIDE          reduce using rule 21 (statement -> statement TIMES statement .)
+    END             reduce using rule 21 (statement -> statement TIMES statement .)
+    IDENTIFIER      reduce using rule 21 (statement -> statement TIMES statement .)
+    IF              reduce using rule 21 (statement -> statement TIMES statement .)
+    FOR             reduce using rule 21 (statement -> statement TIMES statement .)
+    WHILE           reduce using rule 21 (statement -> statement TIMES statement .)
+    PRINT           reduce using rule 21 (statement -> statement TIMES statement .)
+    INT             reduce using rule 21 (statement -> statement TIMES statement .)
+    REAL            reduce using rule 21 (statement -> statement TIMES statement .)
+    BOOLEAN         reduce using rule 21 (statement -> statement TIMES statement .)
+    STRING          reduce using rule 21 (statement -> statement TIMES statement .)
+    R_BRACE         reduce using rule 21 (statement -> statement TIMES statement .)
+    R_PARENTHESIS   reduce using rule 21 (statement -> statement TIMES statement .)
+    EQUAL           reduce using rule 21 (statement -> statement TIMES statement .)
+    NOT_EQUAL       reduce using rule 21 (statement -> statement TIMES statement .)
+    GREATER         reduce using rule 21 (statement -> statement TIMES statement .)
+    LESS            reduce using rule 21 (statement -> statement TIMES statement .)
+    GREATER_EQUAL   reduce using rule 21 (statement -> statement TIMES statement .)
+    LESS_EQUAL      reduce using rule 21 (statement -> statement TIMES statement .)
+    AND             reduce using rule 21 (statement -> statement TIMES statement .)
+    OR              reduce using rule 21 (statement -> statement TIMES statement .)
+    SEMMICOLON      reduce using rule 21 (statement -> statement TIMES statement .)
+
+  ! PLUS            [ shift and go to state 49 ]
+  ! MINUS           [ shift and go to state 50 ]
+  ! TIMES           [ shift and go to state 51 ]
+  ! DIVIDE          [ shift and go to state 52 ]
+
+
+state 71
+
+    (22) statement -> statement DIVIDE statement .
+    (19) statement -> statement . PLUS statement
+    (20) statement -> statement . MINUS statement
+    (21) statement -> statement . TIMES statement
+    (22) statement -> statement . DIVIDE statement
+
+    PLUS            reduce using rule 22 (statement -> statement DIVIDE statement .)
+    MINUS           reduce using rule 22 (statement -> statement DIVIDE statement .)
+    TIMES           reduce using rule 22 (statement -> statement DIVIDE statement .)
+    DIVIDE          reduce using rule 22 (statement -> statement DIVIDE statement .)
+    END             reduce using rule 22 (statement -> statement DIVIDE statement .)
+    IDENTIFIER      reduce using rule 22 (statement -> statement DIVIDE statement .)
+    IF              reduce using rule 22 (statement -> statement DIVIDE statement .)
+    FOR             reduce using rule 22 (statement -> statement DIVIDE statement .)
+    WHILE           reduce using rule 22 (statement -> statement DIVIDE statement .)
+    PRINT           reduce using rule 22 (statement -> statement DIVIDE statement .)
+    INT             reduce using rule 22 (statement -> statement DIVIDE statement .)
+    REAL            reduce using rule 22 (statement -> statement DIVIDE statement .)
+    BOOLEAN         reduce using rule 22 (statement -> statement DIVIDE statement .)
+    STRING          reduce using rule 22 (statement -> statement DIVIDE statement .)
+    R_BRACE         reduce using rule 22 (statement -> statement DIVIDE statement .)
+    R_PARENTHESIS   reduce using rule 22 (statement -> statement DIVIDE statement .)
+    EQUAL           reduce using rule 22 (statement -> statement DIVIDE statement .)
+    NOT_EQUAL       reduce using rule 22 (statement -> statement DIVIDE statement .)
+    GREATER         reduce using rule 22 (statement -> statement DIVIDE statement .)
+    LESS            reduce using rule 22 (statement -> statement DIVIDE statement .)
+    GREATER_EQUAL   reduce using rule 22 (statement -> statement DIVIDE statement .)
+    LESS_EQUAL      reduce using rule 22 (statement -> statement DIVIDE statement .)
+    AND             reduce using rule 22 (statement -> statement DIVIDE statement .)
+    OR              reduce using rule 22 (statement -> statement DIVIDE statement .)
+    SEMMICOLON      reduce using rule 22 (statement -> statement DIVIDE statement .)
+
+  ! PLUS            [ shift and go to state 49 ]
+  ! MINUS           [ shift and go to state 50 ]
+  ! TIMES           [ shift and go to state 51 ]
+  ! DIVIDE          [ shift and go to state 52 ]
+
+
+state 72
+
+    (27) statement -> L_PARENTHESIS statement R_PARENTHESIS .
+
+    PLUS            reduce using rule 27 (statement -> L_PARENTHESIS statement R_PARENTHESIS .)
+    MINUS           reduce using rule 27 (statement -> L_PARENTHESIS statement R_PARENTHESIS .)
+    TIMES           reduce using rule 27 (statement -> L_PARENTHESIS statement R_PARENTHESIS .)
+    DIVIDE          reduce using rule 27 (statement -> L_PARENTHESIS statement R_PARENTHESIS .)
+    END             reduce using rule 27 (statement -> L_PARENTHESIS statement R_PARENTHESIS .)
+    IDENTIFIER      reduce using rule 27 (statement -> L_PARENTHESIS statement R_PARENTHESIS .)
+    IF              reduce using rule 27 (statement -> L_PARENTHESIS statement R_PARENTHESIS .)
+    FOR             reduce using rule 27 (statement -> L_PARENTHESIS statement R_PARENTHESIS .)
+    WHILE           reduce using rule 27 (statement -> L_PARENTHESIS statement R_PARENTHESIS .)
+    PRINT           reduce using rule 27 (statement -> L_PARENTHESIS statement R_PARENTHESIS .)
+    INT             reduce using rule 27 (statement -> L_PARENTHESIS statement R_PARENTHESIS .)
+    REAL            reduce using rule 27 (statement -> L_PARENTHESIS statement R_PARENTHESIS .)
+    BOOLEAN         reduce using rule 27 (statement -> L_PARENTHESIS statement R_PARENTHESIS .)
+    STRING          reduce using rule 27 (statement -> L_PARENTHESIS statement R_PARENTHESIS .)
+    R_BRACE         reduce using rule 27 (statement -> L_PARENTHESIS statement R_PARENTHESIS .)
+    R_PARENTHESIS   reduce using rule 27 (statement -> L_PARENTHESIS statement R_PARENTHESIS .)
+    EQUAL           reduce using rule 27 (statement -> L_PARENTHESIS statement R_PARENTHESIS .)
+    NOT_EQUAL       reduce using rule 27 (statement -> L_PARENTHESIS statement R_PARENTHESIS .)
+    GREATER         reduce using rule 27 (statement -> L_PARENTHESIS statement R_PARENTHESIS .)
+    LESS            reduce using rule 27 (statement -> L_PARENTHESIS statement R_PARENTHESIS .)
+    GREATER_EQUAL   reduce using rule 27 (statement -> L_PARENTHESIS statement R_PARENTHESIS .)
+    LESS_EQUAL      reduce using rule 27 (statement -> L_PARENTHESIS statement R_PARENTHESIS .)
+    AND             reduce using rule 27 (statement -> L_PARENTHESIS statement R_PARENTHESIS .)
+    OR              reduce using rule 27 (statement -> L_PARENTHESIS statement R_PARENTHESIS .)
+    SEMMICOLON      reduce using rule 27 (statement -> L_PARENTHESIS statement R_PARENTHESIS .)
+
+
+state 73
+
+    (28) statement -> L_PARENTHESIS conditional R_PARENTHESIS .
+
+    PLUS            reduce using rule 28 (statement -> L_PARENTHESIS conditional R_PARENTHESIS .)
+    MINUS           reduce using rule 28 (statement -> L_PARENTHESIS conditional R_PARENTHESIS .)
+    TIMES           reduce using rule 28 (statement -> L_PARENTHESIS conditional R_PARENTHESIS .)
+    DIVIDE          reduce using rule 28 (statement -> L_PARENTHESIS conditional R_PARENTHESIS .)
+    END             reduce using rule 28 (statement -> L_PARENTHESIS conditional R_PARENTHESIS .)
+    IDENTIFIER      reduce using rule 28 (statement -> L_PARENTHESIS conditional R_PARENTHESIS .)
+    IF              reduce using rule 28 (statement -> L_PARENTHESIS conditional R_PARENTHESIS .)
+    FOR             reduce using rule 28 (statement -> L_PARENTHESIS conditional R_PARENTHESIS .)
+    WHILE           reduce using rule 28 (statement -> L_PARENTHESIS conditional R_PARENTHESIS .)
+    PRINT           reduce using rule 28 (statement -> L_PARENTHESIS conditional R_PARENTHESIS .)
+    INT             reduce using rule 28 (statement -> L_PARENTHESIS conditional R_PARENTHESIS .)
+    REAL            reduce using rule 28 (statement -> L_PARENTHESIS conditional R_PARENTHESIS .)
+    BOOLEAN         reduce using rule 28 (statement -> L_PARENTHESIS conditional R_PARENTHESIS .)
+    STRING          reduce using rule 28 (statement -> L_PARENTHESIS conditional R_PARENTHESIS .)
+    R_BRACE         reduce using rule 28 (statement -> L_PARENTHESIS conditional R_PARENTHESIS .)
+    R_PARENTHESIS   reduce using rule 28 (statement -> L_PARENTHESIS conditional R_PARENTHESIS .)
+    EQUAL           reduce using rule 28 (statement -> L_PARENTHESIS conditional R_PARENTHESIS .)
+    NOT_EQUAL       reduce using rule 28 (statement -> L_PARENTHESIS conditional R_PARENTHESIS .)
+    GREATER         reduce using rule 28 (statement -> L_PARENTHESIS conditional R_PARENTHESIS .)
+    LESS            reduce using rule 28 (statement -> L_PARENTHESIS conditional R_PARENTHESIS .)
+    GREATER_EQUAL   reduce using rule 28 (statement -> L_PARENTHESIS conditional R_PARENTHESIS .)
+    LESS_EQUAL      reduce using rule 28 (statement -> L_PARENTHESIS conditional R_PARENTHESIS .)
+    AND             reduce using rule 28 (statement -> L_PARENTHESIS conditional R_PARENTHESIS .)
+    OR              reduce using rule 28 (statement -> L_PARENTHESIS conditional R_PARENTHESIS .)
+    SEMMICOLON      reduce using rule 28 (statement -> L_PARENTHESIS conditional R_PARENTHESIS .)
+
+
+state 74
+
+    (40) if_statement -> IF L_PARENTHESIS conditional R_PARENTHESIS THEN . L_BRACE expressions R_BRACE
+    (41) if_statement -> IF L_PARENTHESIS conditional R_PARENTHESIS THEN . L_BRACE expressions R_BRACE ELSE L_BRACE expressions R_BRACE
+
+    L_BRACE         shift and go to state 85
+
+
+state 75
+
+    (29) conditional -> conditional EQUAL conditional .
+    (29) conditional -> conditional . EQUAL conditional
+    (30) conditional -> conditional . NOT_EQUAL conditional
+    (31) conditional -> conditional . GREATER conditional
+    (32) conditional -> conditional . LESS conditional
+    (33) conditional -> conditional . GREATER_EQUAL conditional
+    (34) conditional -> conditional . LESS_EQUAL conditional
+    (35) conditional -> conditional . AND conditional
+    (36) conditional -> conditional . OR conditional
+
+  ! shift/reduce conflict for EQUAL resolved as shift
+  ! shift/reduce conflict for NOT_EQUAL resolved as shift
+  ! shift/reduce conflict for GREATER resolved as shift
+  ! shift/reduce conflict for LESS resolved as shift
+  ! shift/reduce conflict for GREATER_EQUAL resolved as shift
+  ! shift/reduce conflict for LESS_EQUAL resolved as shift
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+    R_PARENTHESIS   reduce using rule 29 (conditional -> conditional EQUAL conditional .)
+    SEMMICOLON      reduce using rule 29 (conditional -> conditional EQUAL conditional .)
+    EQUAL           shift and go to state 56
+    NOT_EQUAL       shift and go to state 57
+    GREATER         shift and go to state 58
+    LESS            shift and go to state 59
+    GREATER_EQUAL   shift and go to state 60
+    LESS_EQUAL      shift and go to state 61
+    AND             shift and go to state 62
+    OR              shift and go to state 63
+
+  ! EQUAL           [ reduce using rule 29 (conditional -> conditional EQUAL conditional .) ]
+  ! NOT_EQUAL       [ reduce using rule 29 (conditional -> conditional EQUAL conditional .) ]
+  ! GREATER         [ reduce using rule 29 (conditional -> conditional EQUAL conditional .) ]
+  ! LESS            [ reduce using rule 29 (conditional -> conditional EQUAL conditional .) ]
+  ! GREATER_EQUAL   [ reduce using rule 29 (conditional -> conditional EQUAL conditional .) ]
+  ! LESS_EQUAL      [ reduce using rule 29 (conditional -> conditional EQUAL conditional .) ]
+  ! AND             [ reduce using rule 29 (conditional -> conditional EQUAL conditional .) ]
+  ! OR              [ reduce using rule 29 (conditional -> conditional EQUAL conditional .) ]
+
+
+state 76
+
+    (30) conditional -> conditional NOT_EQUAL conditional .
+    (29) conditional -> conditional . EQUAL conditional
+    (30) conditional -> conditional . NOT_EQUAL conditional
+    (31) conditional -> conditional . GREATER conditional
+    (32) conditional -> conditional . LESS conditional
+    (33) conditional -> conditional . GREATER_EQUAL conditional
+    (34) conditional -> conditional . LESS_EQUAL conditional
+    (35) conditional -> conditional . AND conditional
+    (36) conditional -> conditional . OR conditional
+
+  ! shift/reduce conflict for EQUAL resolved as shift
+  ! shift/reduce conflict for NOT_EQUAL resolved as shift
+  ! shift/reduce conflict for GREATER resolved as shift
+  ! shift/reduce conflict for LESS resolved as shift
+  ! shift/reduce conflict for GREATER_EQUAL resolved as shift
+  ! shift/reduce conflict for LESS_EQUAL resolved as shift
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+    R_PARENTHESIS   reduce using rule 30 (conditional -> conditional NOT_EQUAL conditional .)
+    SEMMICOLON      reduce using rule 30 (conditional -> conditional NOT_EQUAL conditional .)
+    EQUAL           shift and go to state 56
+    NOT_EQUAL       shift and go to state 57
+    GREATER         shift and go to state 58
+    LESS            shift and go to state 59
+    GREATER_EQUAL   shift and go to state 60
+    LESS_EQUAL      shift and go to state 61
+    AND             shift and go to state 62
+    OR              shift and go to state 63
+
+  ! EQUAL           [ reduce using rule 30 (conditional -> conditional NOT_EQUAL conditional .) ]
+  ! NOT_EQUAL       [ reduce using rule 30 (conditional -> conditional NOT_EQUAL conditional .) ]
+  ! GREATER         [ reduce using rule 30 (conditional -> conditional NOT_EQUAL conditional .) ]
+  ! LESS            [ reduce using rule 30 (conditional -> conditional NOT_EQUAL conditional .) ]
+  ! GREATER_EQUAL   [ reduce using rule 30 (conditional -> conditional NOT_EQUAL conditional .) ]
+  ! LESS_EQUAL      [ reduce using rule 30 (conditional -> conditional NOT_EQUAL conditional .) ]
+  ! AND             [ reduce using rule 30 (conditional -> conditional NOT_EQUAL conditional .) ]
+  ! OR              [ reduce using rule 30 (conditional -> conditional NOT_EQUAL conditional .) ]
+
+
+state 77
+
+    (31) conditional -> conditional GREATER conditional .
+    (29) conditional -> conditional . EQUAL conditional
+    (30) conditional -> conditional . NOT_EQUAL conditional
+    (31) conditional -> conditional . GREATER conditional
+    (32) conditional -> conditional . LESS conditional
+    (33) conditional -> conditional . GREATER_EQUAL conditional
+    (34) conditional -> conditional . LESS_EQUAL conditional
+    (35) conditional -> conditional . AND conditional
+    (36) conditional -> conditional . OR conditional
+
+  ! shift/reduce conflict for EQUAL resolved as shift
+  ! shift/reduce conflict for NOT_EQUAL resolved as shift
+  ! shift/reduce conflict for GREATER resolved as shift
+  ! shift/reduce conflict for LESS resolved as shift
+  ! shift/reduce conflict for GREATER_EQUAL resolved as shift
+  ! shift/reduce conflict for LESS_EQUAL resolved as shift
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+    R_PARENTHESIS   reduce using rule 31 (conditional -> conditional GREATER conditional .)
+    SEMMICOLON      reduce using rule 31 (conditional -> conditional GREATER conditional .)
+    EQUAL           shift and go to state 56
+    NOT_EQUAL       shift and go to state 57
+    GREATER         shift and go to state 58
+    LESS            shift and go to state 59
+    GREATER_EQUAL   shift and go to state 60
+    LESS_EQUAL      shift and go to state 61
+    AND             shift and go to state 62
+    OR              shift and go to state 63
+
+  ! EQUAL           [ reduce using rule 31 (conditional -> conditional GREATER conditional .) ]
+  ! NOT_EQUAL       [ reduce using rule 31 (conditional -> conditional GREATER conditional .) ]
+  ! GREATER         [ reduce using rule 31 (conditional -> conditional GREATER conditional .) ]
+  ! LESS            [ reduce using rule 31 (conditional -> conditional GREATER conditional .) ]
+  ! GREATER_EQUAL   [ reduce using rule 31 (conditional -> conditional GREATER conditional .) ]
+  ! LESS_EQUAL      [ reduce using rule 31 (conditional -> conditional GREATER conditional .) ]
+  ! AND             [ reduce using rule 31 (conditional -> conditional GREATER conditional .) ]
+  ! OR              [ reduce using rule 31 (conditional -> conditional GREATER conditional .) ]
+
+
+state 78
+
+    (32) conditional -> conditional LESS conditional .
+    (29) conditional -> conditional . EQUAL conditional
+    (30) conditional -> conditional . NOT_EQUAL conditional
+    (31) conditional -> conditional . GREATER conditional
+    (32) conditional -> conditional . LESS conditional
+    (33) conditional -> conditional . GREATER_EQUAL conditional
+    (34) conditional -> conditional . LESS_EQUAL conditional
+    (35) conditional -> conditional . AND conditional
+    (36) conditional -> conditional . OR conditional
+
+  ! shift/reduce conflict for EQUAL resolved as shift
+  ! shift/reduce conflict for NOT_EQUAL resolved as shift
+  ! shift/reduce conflict for GREATER resolved as shift
+  ! shift/reduce conflict for LESS resolved as shift
+  ! shift/reduce conflict for GREATER_EQUAL resolved as shift
+  ! shift/reduce conflict for LESS_EQUAL resolved as shift
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+    R_PARENTHESIS   reduce using rule 32 (conditional -> conditional LESS conditional .)
+    SEMMICOLON      reduce using rule 32 (conditional -> conditional LESS conditional .)
+    EQUAL           shift and go to state 56
+    NOT_EQUAL       shift and go to state 57
+    GREATER         shift and go to state 58
+    LESS            shift and go to state 59
+    GREATER_EQUAL   shift and go to state 60
+    LESS_EQUAL      shift and go to state 61
+    AND             shift and go to state 62
+    OR              shift and go to state 63
+
+  ! EQUAL           [ reduce using rule 32 (conditional -> conditional LESS conditional .) ]
+  ! NOT_EQUAL       [ reduce using rule 32 (conditional -> conditional LESS conditional .) ]
+  ! GREATER         [ reduce using rule 32 (conditional -> conditional LESS conditional .) ]
+  ! LESS            [ reduce using rule 32 (conditional -> conditional LESS conditional .) ]
+  ! GREATER_EQUAL   [ reduce using rule 32 (conditional -> conditional LESS conditional .) ]
+  ! LESS_EQUAL      [ reduce using rule 32 (conditional -> conditional LESS conditional .) ]
+  ! AND             [ reduce using rule 32 (conditional -> conditional LESS conditional .) ]
+  ! OR              [ reduce using rule 32 (conditional -> conditional LESS conditional .) ]
+
+
+state 79
+
+    (33) conditional -> conditional GREATER_EQUAL conditional .
+    (29) conditional -> conditional . EQUAL conditional
+    (30) conditional -> conditional . NOT_EQUAL conditional
+    (31) conditional -> conditional . GREATER conditional
+    (32) conditional -> conditional . LESS conditional
+    (33) conditional -> conditional . GREATER_EQUAL conditional
+    (34) conditional -> conditional . LESS_EQUAL conditional
+    (35) conditional -> conditional . AND conditional
+    (36) conditional -> conditional . OR conditional
+
+  ! shift/reduce conflict for EQUAL resolved as shift
+  ! shift/reduce conflict for NOT_EQUAL resolved as shift
+  ! shift/reduce conflict for GREATER resolved as shift
+  ! shift/reduce conflict for LESS resolved as shift
+  ! shift/reduce conflict for GREATER_EQUAL resolved as shift
+  ! shift/reduce conflict for LESS_EQUAL resolved as shift
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+    R_PARENTHESIS   reduce using rule 33 (conditional -> conditional GREATER_EQUAL conditional .)
+    SEMMICOLON      reduce using rule 33 (conditional -> conditional GREATER_EQUAL conditional .)
+    EQUAL           shift and go to state 56
+    NOT_EQUAL       shift and go to state 57
+    GREATER         shift and go to state 58
+    LESS            shift and go to state 59
+    GREATER_EQUAL   shift and go to state 60
+    LESS_EQUAL      shift and go to state 61
+    AND             shift and go to state 62
+    OR              shift and go to state 63
+
+  ! EQUAL           [ reduce using rule 33 (conditional -> conditional GREATER_EQUAL conditional .) ]
+  ! NOT_EQUAL       [ reduce using rule 33 (conditional -> conditional GREATER_EQUAL conditional .) ]
+  ! GREATER         [ reduce using rule 33 (conditional -> conditional GREATER_EQUAL conditional .) ]
+  ! LESS            [ reduce using rule 33 (conditional -> conditional GREATER_EQUAL conditional .) ]
+  ! GREATER_EQUAL   [ reduce using rule 33 (conditional -> conditional GREATER_EQUAL conditional .) ]
+  ! LESS_EQUAL      [ reduce using rule 33 (conditional -> conditional GREATER_EQUAL conditional .) ]
+  ! AND             [ reduce using rule 33 (conditional -> conditional GREATER_EQUAL conditional .) ]
+  ! OR              [ reduce using rule 33 (conditional -> conditional GREATER_EQUAL conditional .) ]
+
+
+state 80
+
+    (34) conditional -> conditional LESS_EQUAL conditional .
+    (29) conditional -> conditional . EQUAL conditional
+    (30) conditional -> conditional . NOT_EQUAL conditional
+    (31) conditional -> conditional . GREATER conditional
+    (32) conditional -> conditional . LESS conditional
+    (33) conditional -> conditional . GREATER_EQUAL conditional
+    (34) conditional -> conditional . LESS_EQUAL conditional
+    (35) conditional -> conditional . AND conditional
+    (36) conditional -> conditional . OR conditional
+
+  ! shift/reduce conflict for EQUAL resolved as shift
+  ! shift/reduce conflict for NOT_EQUAL resolved as shift
+  ! shift/reduce conflict for GREATER resolved as shift
+  ! shift/reduce conflict for LESS resolved as shift
+  ! shift/reduce conflict for GREATER_EQUAL resolved as shift
+  ! shift/reduce conflict for LESS_EQUAL resolved as shift
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+    R_PARENTHESIS   reduce using rule 34 (conditional -> conditional LESS_EQUAL conditional .)
+    SEMMICOLON      reduce using rule 34 (conditional -> conditional LESS_EQUAL conditional .)
+    EQUAL           shift and go to state 56
+    NOT_EQUAL       shift and go to state 57
+    GREATER         shift and go to state 58
+    LESS            shift and go to state 59
+    GREATER_EQUAL   shift and go to state 60
+    LESS_EQUAL      shift and go to state 61
+    AND             shift and go to state 62
+    OR              shift and go to state 63
+
+  ! EQUAL           [ reduce using rule 34 (conditional -> conditional LESS_EQUAL conditional .) ]
+  ! NOT_EQUAL       [ reduce using rule 34 (conditional -> conditional LESS_EQUAL conditional .) ]
+  ! GREATER         [ reduce using rule 34 (conditional -> conditional LESS_EQUAL conditional .) ]
+  ! LESS            [ reduce using rule 34 (conditional -> conditional LESS_EQUAL conditional .) ]
+  ! GREATER_EQUAL   [ reduce using rule 34 (conditional -> conditional LESS_EQUAL conditional .) ]
+  ! LESS_EQUAL      [ reduce using rule 34 (conditional -> conditional LESS_EQUAL conditional .) ]
+  ! AND             [ reduce using rule 34 (conditional -> conditional LESS_EQUAL conditional .) ]
+  ! OR              [ reduce using rule 34 (conditional -> conditional LESS_EQUAL conditional .) ]
+
+
+state 81
+
+    (35) conditional -> conditional AND conditional .
+    (29) conditional -> conditional . EQUAL conditional
+    (30) conditional -> conditional . NOT_EQUAL conditional
+    (31) conditional -> conditional . GREATER conditional
+    (32) conditional -> conditional . LESS conditional
+    (33) conditional -> conditional . GREATER_EQUAL conditional
+    (34) conditional -> conditional . LESS_EQUAL conditional
+    (35) conditional -> conditional . AND conditional
+    (36) conditional -> conditional . OR conditional
+
+    R_PARENTHESIS   reduce using rule 35 (conditional -> conditional AND conditional .)
+    EQUAL           reduce using rule 35 (conditional -> conditional AND conditional .)
+    NOT_EQUAL       reduce using rule 35 (conditional -> conditional AND conditional .)
+    GREATER         reduce using rule 35 (conditional -> conditional AND conditional .)
+    LESS            reduce using rule 35 (conditional -> conditional AND conditional .)
+    GREATER_EQUAL   reduce using rule 35 (conditional -> conditional AND conditional .)
+    LESS_EQUAL      reduce using rule 35 (conditional -> conditional AND conditional .)
+    AND             reduce using rule 35 (conditional -> conditional AND conditional .)
+    OR              reduce using rule 35 (conditional -> conditional AND conditional .)
+    SEMMICOLON      reduce using rule 35 (conditional -> conditional AND conditional .)
+
+  ! EQUAL           [ shift and go to state 56 ]
+  ! NOT_EQUAL       [ shift and go to state 57 ]
+  ! GREATER         [ shift and go to state 58 ]
+  ! LESS            [ shift and go to state 59 ]
+  ! GREATER_EQUAL   [ shift and go to state 60 ]
+  ! LESS_EQUAL      [ shift and go to state 61 ]
+  ! AND             [ shift and go to state 62 ]
+  ! OR              [ shift and go to state 63 ]
+
+
+state 82
+
+    (36) conditional -> conditional OR conditional .
+    (29) conditional -> conditional . EQUAL conditional
+    (30) conditional -> conditional . NOT_EQUAL conditional
+    (31) conditional -> conditional . GREATER conditional
+    (32) conditional -> conditional . LESS conditional
+    (33) conditional -> conditional . GREATER_EQUAL conditional
+    (34) conditional -> conditional . LESS_EQUAL conditional
+    (35) conditional -> conditional . AND conditional
+    (36) conditional -> conditional . OR conditional
+
+    R_PARENTHESIS   reduce using rule 36 (conditional -> conditional OR conditional .)
+    EQUAL           reduce using rule 36 (conditional -> conditional OR conditional .)
+    NOT_EQUAL       reduce using rule 36 (conditional -> conditional OR conditional .)
+    GREATER         reduce using rule 36 (conditional -> conditional OR conditional .)
+    LESS            reduce using rule 36 (conditional -> conditional OR conditional .)
+    GREATER_EQUAL   reduce using rule 36 (conditional -> conditional OR conditional .)
+    LESS_EQUAL      reduce using rule 36 (conditional -> conditional OR conditional .)
+    AND             reduce using rule 36 (conditional -> conditional OR conditional .)
+    OR              reduce using rule 36 (conditional -> conditional OR conditional .)
+    SEMMICOLON      reduce using rule 36 (conditional -> conditional OR conditional .)
+
+  ! EQUAL           [ shift and go to state 56 ]
+  ! NOT_EQUAL       [ shift and go to state 57 ]
+  ! GREATER         [ shift and go to state 58 ]
+  ! LESS            [ shift and go to state 59 ]
+  ! GREATER_EQUAL   [ shift and go to state 60 ]
+  ! LESS_EQUAL      [ shift and go to state 61 ]
+  ! AND             [ shift and go to state 62 ]
+  ! OR              [ shift and go to state 63 ]
+
+
+state 83
+
+    (42) for_loop -> FOR L_PARENTHESIS statement SEMMICOLON conditional . SEMMICOLON var_declaration R_PARENTHESIS L_BRACE expressions R_BRACE
+    (29) conditional -> conditional . EQUAL conditional
+    (30) conditional -> conditional . NOT_EQUAL conditional
+    (31) conditional -> conditional . GREATER conditional
+    (32) conditional -> conditional . LESS conditional
+    (33) conditional -> conditional . GREATER_EQUAL conditional
+    (34) conditional -> conditional . LESS_EQUAL conditional
+    (35) conditional -> conditional . AND conditional
+    (36) conditional -> conditional . OR conditional
+
+    SEMMICOLON      shift and go to state 86
+    EQUAL           shift and go to state 56
+    NOT_EQUAL       shift and go to state 57
+    GREATER         shift and go to state 58
+    LESS            shift and go to state 59
+    GREATER_EQUAL   shift and go to state 60
+    LESS_EQUAL      shift and go to state 61
+    AND             shift and go to state 62
+    OR              shift and go to state 63
+
+
+state 84
+
+    (43) while_loop -> WHILE L_PARENTHESIS conditional R_PARENTHESIS DO . L_BRACE expressions R_BRACE
+
+    L_BRACE         shift and go to state 87
+
+
+state 85
+
+    (40) if_statement -> IF L_PARENTHESIS conditional R_PARENTHESIS THEN L_BRACE . expressions R_BRACE
+    (41) if_statement -> IF L_PARENTHESIS conditional R_PARENTHESIS THEN L_BRACE . expressions R_BRACE ELSE L_BRACE expressions R_BRACE
+    (2) expressions -> . expressions expression
+    (3) expressions -> . expression
+    (4) expression -> . var_declaration
+    (5) expression -> . if_statement
+    (6) expression -> . for_loop
+    (7) expression -> . while_loop
+    (8) expression -> . print
+    (9) expression -> . empty
+    (14) var_declaration -> . data_type DOUBLECOLON declarations
+    (17) var_declaration -> . IDENTIFIER ASSING statement
+    (40) if_statement -> . IF L_PARENTHESIS conditional R_PARENTHESIS THEN L_BRACE expressions R_BRACE
+    (41) if_statement -> . IF L_PARENTHESIS conditional R_PARENTHESIS THEN L_BRACE expressions R_BRACE ELSE L_BRACE expressions R_BRACE
+    (42) for_loop -> . FOR L_PARENTHESIS statement SEMMICOLON conditional SEMMICOLON var_declaration R_PARENTHESIS L_BRACE expressions R_BRACE
+    (43) while_loop -> . WHILE L_PARENTHESIS conditional R_PARENTHESIS DO L_BRACE expressions R_BRACE
+    (44) print -> . PRINT L_PARENTHESIS statement R_PARENTHESIS
+    (45) empty -> .
+    (10) data_type -> . INT
+    (11) data_type -> . REAL
+    (12) data_type -> . BOOLEAN
+    (13) data_type -> . STRING
+
+  ! shift/reduce conflict for IDENTIFIER resolved as shift
+  ! shift/reduce conflict for IF resolved as shift
+  ! shift/reduce conflict for FOR resolved as shift
+  ! shift/reduce conflict for WHILE resolved as shift
+  ! shift/reduce conflict for PRINT resolved as shift
+  ! shift/reduce conflict for INT resolved as shift
+  ! shift/reduce conflict for REAL resolved as shift
+  ! shift/reduce conflict for BOOLEAN resolved as shift
+  ! shift/reduce conflict for STRING resolved as shift
+    IDENTIFIER      shift and go to state 13
+    IF              shift and go to state 14
+    FOR             shift and go to state 15
+    WHILE           shift and go to state 16
+    PRINT           shift and go to state 17
+    R_BRACE         reduce using rule 45 (empty -> .)
+    INT             shift and go to state 18
+    REAL            shift and go to state 19
+    BOOLEAN         shift and go to state 20
+    STRING          shift and go to state 21
+
+  ! IDENTIFIER      [ reduce using rule 45 (empty -> .) ]
+  ! IF              [ reduce using rule 45 (empty -> .) ]
+  ! FOR             [ reduce using rule 45 (empty -> .) ]
+  ! WHILE           [ reduce using rule 45 (empty -> .) ]
+  ! PRINT           [ reduce using rule 45 (empty -> .) ]
+  ! INT             [ reduce using rule 45 (empty -> .) ]
+  ! REAL            [ reduce using rule 45 (empty -> .) ]
+  ! BOOLEAN         [ reduce using rule 45 (empty -> .) ]
+  ! STRING          [ reduce using rule 45 (empty -> .) ]
+
+    expressions                    shift and go to state 88
+    expression                     shift and go to state 5
+    var_declaration                shift and go to state 6
+    if_statement                   shift and go to state 7
+    for_loop                       shift and go to state 8
+    while_loop                     shift and go to state 9
+    print                          shift and go to state 10
+    empty                          shift and go to state 11
+    data_type                      shift and go to state 12
+
+state 86
+
+    (42) for_loop -> FOR L_PARENTHESIS statement SEMMICOLON conditional SEMMICOLON . var_declaration R_PARENTHESIS L_BRACE expressions R_BRACE
+    (14) var_declaration -> . data_type DOUBLECOLON declarations
+    (17) var_declaration -> . IDENTIFIER ASSING statement
+    (10) data_type -> . INT
+    (11) data_type -> . REAL
+    (12) data_type -> . BOOLEAN
+    (13) data_type -> . STRING
+
+    IDENTIFIER      shift and go to state 13
+    INT             shift and go to state 18
+    REAL            shift and go to state 19
+    BOOLEAN         shift and go to state 20
+    STRING          shift and go to state 21
+
+    var_declaration                shift and go to state 89
+    data_type                      shift and go to state 12
+
+state 87
+
+    (43) while_loop -> WHILE L_PARENTHESIS conditional R_PARENTHESIS DO L_BRACE . expressions R_BRACE
+    (2) expressions -> . expressions expression
+    (3) expressions -> . expression
+    (4) expression -> . var_declaration
+    (5) expression -> . if_statement
+    (6) expression -> . for_loop
+    (7) expression -> . while_loop
+    (8) expression -> . print
+    (9) expression -> . empty
+    (14) var_declaration -> . data_type DOUBLECOLON declarations
+    (17) var_declaration -> . IDENTIFIER ASSING statement
+    (40) if_statement -> . IF L_PARENTHESIS conditional R_PARENTHESIS THEN L_BRACE expressions R_BRACE
+    (41) if_statement -> . IF L_PARENTHESIS conditional R_PARENTHESIS THEN L_BRACE expressions R_BRACE ELSE L_BRACE expressions R_BRACE
+    (42) for_loop -> . FOR L_PARENTHESIS statement SEMMICOLON conditional SEMMICOLON var_declaration R_PARENTHESIS L_BRACE expressions R_BRACE
+    (43) while_loop -> . WHILE L_PARENTHESIS conditional R_PARENTHESIS DO L_BRACE expressions R_BRACE
+    (44) print -> . PRINT L_PARENTHESIS statement R_PARENTHESIS
+    (45) empty -> .
+    (10) data_type -> . INT
+    (11) data_type -> . REAL
+    (12) data_type -> . BOOLEAN
+    (13) data_type -> . STRING
+
+  ! shift/reduce conflict for IDENTIFIER resolved as shift
+  ! shift/reduce conflict for IF resolved as shift
+  ! shift/reduce conflict for FOR resolved as shift
+  ! shift/reduce conflict for WHILE resolved as shift
+  ! shift/reduce conflict for PRINT resolved as shift
+  ! shift/reduce conflict for INT resolved as shift
+  ! shift/reduce conflict for REAL resolved as shift
+  ! shift/reduce conflict for BOOLEAN resolved as shift
+  ! shift/reduce conflict for STRING resolved as shift
+    IDENTIFIER      shift and go to state 13
+    IF              shift and go to state 14
+    FOR             shift and go to state 15
+    WHILE           shift and go to state 16
+    PRINT           shift and go to state 17
+    R_BRACE         reduce using rule 45 (empty -> .)
+    INT             shift and go to state 18
+    REAL            shift and go to state 19
+    BOOLEAN         shift and go to state 20
+    STRING          shift and go to state 21
+
+  ! IDENTIFIER      [ reduce using rule 45 (empty -> .) ]
+  ! IF              [ reduce using rule 45 (empty -> .) ]
+  ! FOR             [ reduce using rule 45 (empty -> .) ]
+  ! WHILE           [ reduce using rule 45 (empty -> .) ]
+  ! PRINT           [ reduce using rule 45 (empty -> .) ]
+  ! INT             [ reduce using rule 45 (empty -> .) ]
+  ! REAL            [ reduce using rule 45 (empty -> .) ]
+  ! BOOLEAN         [ reduce using rule 45 (empty -> .) ]
+  ! STRING          [ reduce using rule 45 (empty -> .) ]
+
+    expressions                    shift and go to state 90
+    expression                     shift and go to state 5
+    var_declaration                shift and go to state 6
+    if_statement                   shift and go to state 7
+    for_loop                       shift and go to state 8
+    while_loop                     shift and go to state 9
+    print                          shift and go to state 10
+    empty                          shift and go to state 11
+    data_type                      shift and go to state 12
+
+state 88
+
+    (40) if_statement -> IF L_PARENTHESIS conditional R_PARENTHESIS THEN L_BRACE expressions . R_BRACE
+    (41) if_statement -> IF L_PARENTHESIS conditional R_PARENTHESIS THEN L_BRACE expressions . R_BRACE ELSE L_BRACE expressions R_BRACE
+    (2) expressions -> expressions . expression
+    (4) expression -> . var_declaration
+    (5) expression -> . if_statement
+    (6) expression -> . for_loop
+    (7) expression -> . while_loop
+    (8) expression -> . print
+    (9) expression -> . empty
+    (14) var_declaration -> . data_type DOUBLECOLON declarations
+    (17) var_declaration -> . IDENTIFIER ASSING statement
+    (40) if_statement -> . IF L_PARENTHESIS conditional R_PARENTHESIS THEN L_BRACE expressions R_BRACE
+    (41) if_statement -> . IF L_PARENTHESIS conditional R_PARENTHESIS THEN L_BRACE expressions R_BRACE ELSE L_BRACE expressions R_BRACE
+    (42) for_loop -> . FOR L_PARENTHESIS statement SEMMICOLON conditional SEMMICOLON var_declaration R_PARENTHESIS L_BRACE expressions R_BRACE
+    (43) while_loop -> . WHILE L_PARENTHESIS conditional R_PARENTHESIS DO L_BRACE expressions R_BRACE
+    (44) print -> . PRINT L_PARENTHESIS statement R_PARENTHESIS
+    (45) empty -> .
+    (10) data_type -> . INT
+    (11) data_type -> . REAL
+    (12) data_type -> . BOOLEAN
+    (13) data_type -> . STRING
+
+  ! shift/reduce conflict for R_BRACE resolved as shift
+  ! shift/reduce conflict for IDENTIFIER resolved as shift
+  ! shift/reduce conflict for IF resolved as shift
+  ! shift/reduce conflict for FOR resolved as shift
+  ! shift/reduce conflict for WHILE resolved as shift
+  ! shift/reduce conflict for PRINT resolved as shift
+  ! shift/reduce conflict for INT resolved as shift
+  ! shift/reduce conflict for REAL resolved as shift
+  ! shift/reduce conflict for BOOLEAN resolved as shift
+  ! shift/reduce conflict for STRING resolved as shift
+    R_BRACE         shift and go to state 91
+    IDENTIFIER      shift and go to state 13
+    IF              shift and go to state 14
+    FOR             shift and go to state 15
+    WHILE           shift and go to state 16
+    PRINT           shift and go to state 17
+    INT             shift and go to state 18
+    REAL            shift and go to state 19
+    BOOLEAN         shift and go to state 20
+    STRING          shift and go to state 21
+
+  ! R_BRACE         [ reduce using rule 45 (empty -> .) ]
+  ! IDENTIFIER      [ reduce using rule 45 (empty -> .) ]
+  ! IF              [ reduce using rule 45 (empty -> .) ]
+  ! FOR             [ reduce using rule 45 (empty -> .) ]
+  ! WHILE           [ reduce using rule 45 (empty -> .) ]
+  ! PRINT           [ reduce using rule 45 (empty -> .) ]
+  ! INT             [ reduce using rule 45 (empty -> .) ]
+  ! REAL            [ reduce using rule 45 (empty -> .) ]
+  ! BOOLEAN         [ reduce using rule 45 (empty -> .) ]
+  ! STRING          [ reduce using rule 45 (empty -> .) ]
+
+    expression                     shift and go to state 23
+    var_declaration                shift and go to state 6
+    if_statement                   shift and go to state 7
+    for_loop                       shift and go to state 8
+    while_loop                     shift and go to state 9
+    print                          shift and go to state 10
+    empty                          shift and go to state 11
+    data_type                      shift and go to state 12
+
+state 89
+
+    (42) for_loop -> FOR L_PARENTHESIS statement SEMMICOLON conditional SEMMICOLON var_declaration . R_PARENTHESIS L_BRACE expressions R_BRACE
+
+    R_PARENTHESIS   shift and go to state 92
+
+
+state 90
+
+    (43) while_loop -> WHILE L_PARENTHESIS conditional R_PARENTHESIS DO L_BRACE expressions . R_BRACE
+    (2) expressions -> expressions . expression
+    (4) expression -> . var_declaration
+    (5) expression -> . if_statement
+    (6) expression -> . for_loop
+    (7) expression -> . while_loop
+    (8) expression -> . print
+    (9) expression -> . empty
+    (14) var_declaration -> . data_type DOUBLECOLON declarations
+    (17) var_declaration -> . IDENTIFIER ASSING statement
+    (40) if_statement -> . IF L_PARENTHESIS conditional R_PARENTHESIS THEN L_BRACE expressions R_BRACE
+    (41) if_statement -> . IF L_PARENTHESIS conditional R_PARENTHESIS THEN L_BRACE expressions R_BRACE ELSE L_BRACE expressions R_BRACE
+    (42) for_loop -> . FOR L_PARENTHESIS statement SEMMICOLON conditional SEMMICOLON var_declaration R_PARENTHESIS L_BRACE expressions R_BRACE
+    (43) while_loop -> . WHILE L_PARENTHESIS conditional R_PARENTHESIS DO L_BRACE expressions R_BRACE
+    (44) print -> . PRINT L_PARENTHESIS statement R_PARENTHESIS
+    (45) empty -> .
+    (10) data_type -> . INT
+    (11) data_type -> . REAL
+    (12) data_type -> . BOOLEAN
+    (13) data_type -> . STRING
+
+  ! shift/reduce conflict for R_BRACE resolved as shift
+  ! shift/reduce conflict for IDENTIFIER resolved as shift
+  ! shift/reduce conflict for IF resolved as shift
+  ! shift/reduce conflict for FOR resolved as shift
+  ! shift/reduce conflict for WHILE resolved as shift
+  ! shift/reduce conflict for PRINT resolved as shift
+  ! shift/reduce conflict for INT resolved as shift
+  ! shift/reduce conflict for REAL resolved as shift
+  ! shift/reduce conflict for BOOLEAN resolved as shift
+  ! shift/reduce conflict for STRING resolved as shift
+    R_BRACE         shift and go to state 93
+    IDENTIFIER      shift and go to state 13
+    IF              shift and go to state 14
+    FOR             shift and go to state 15
+    WHILE           shift and go to state 16
+    PRINT           shift and go to state 17
+    INT             shift and go to state 18
+    REAL            shift and go to state 19
+    BOOLEAN         shift and go to state 20
+    STRING          shift and go to state 21
+
+  ! R_BRACE         [ reduce using rule 45 (empty -> .) ]
+  ! IDENTIFIER      [ reduce using rule 45 (empty -> .) ]
+  ! IF              [ reduce using rule 45 (empty -> .) ]
+  ! FOR             [ reduce using rule 45 (empty -> .) ]
+  ! WHILE           [ reduce using rule 45 (empty -> .) ]
+  ! PRINT           [ reduce using rule 45 (empty -> .) ]
+  ! INT             [ reduce using rule 45 (empty -> .) ]
+  ! REAL            [ reduce using rule 45 (empty -> .) ]
+  ! BOOLEAN         [ reduce using rule 45 (empty -> .) ]
+  ! STRING          [ reduce using rule 45 (empty -> .) ]
+
+    expression                     shift and go to state 23
+    var_declaration                shift and go to state 6
+    if_statement                   shift and go to state 7
+    for_loop                       shift and go to state 8
+    while_loop                     shift and go to state 9
+    print                          shift and go to state 10
+    empty                          shift and go to state 11
+    data_type                      shift and go to state 12
+
+state 91
+
+    (40) if_statement -> IF L_PARENTHESIS conditional R_PARENTHESIS THEN L_BRACE expressions R_BRACE .
+    (41) if_statement -> IF L_PARENTHESIS conditional R_PARENTHESIS THEN L_BRACE expressions R_BRACE . ELSE L_BRACE expressions R_BRACE
+
+    END             reduce using rule 40 (if_statement -> IF L_PARENTHESIS conditional R_PARENTHESIS THEN L_BRACE expressions R_BRACE .)
+    IDENTIFIER      reduce using rule 40 (if_statement -> IF L_PARENTHESIS conditional R_PARENTHESIS THEN L_BRACE expressions R_BRACE .)
+    IF              reduce using rule 40 (if_statement -> IF L_PARENTHESIS conditional R_PARENTHESIS THEN L_BRACE expressions R_BRACE .)
+    FOR             reduce using rule 40 (if_statement -> IF L_PARENTHESIS conditional R_PARENTHESIS THEN L_BRACE expressions R_BRACE .)
+    WHILE           reduce using rule 40 (if_statement -> IF L_PARENTHESIS conditional R_PARENTHESIS THEN L_BRACE expressions R_BRACE .)
+    PRINT           reduce using rule 40 (if_statement -> IF L_PARENTHESIS conditional R_PARENTHESIS THEN L_BRACE expressions R_BRACE .)
+    INT             reduce using rule 40 (if_statement -> IF L_PARENTHESIS conditional R_PARENTHESIS THEN L_BRACE expressions R_BRACE .)
+    REAL            reduce using rule 40 (if_statement -> IF L_PARENTHESIS conditional R_PARENTHESIS THEN L_BRACE expressions R_BRACE .)
+    BOOLEAN         reduce using rule 40 (if_statement -> IF L_PARENTHESIS conditional R_PARENTHESIS THEN L_BRACE expressions R_BRACE .)
+    STRING          reduce using rule 40 (if_statement -> IF L_PARENTHESIS conditional R_PARENTHESIS THEN L_BRACE expressions R_BRACE .)
+    R_BRACE         reduce using rule 40 (if_statement -> IF L_PARENTHESIS conditional R_PARENTHESIS THEN L_BRACE expressions R_BRACE .)
+    ELSE            shift and go to state 94
+
+
+state 92
+
+    (42) for_loop -> FOR L_PARENTHESIS statement SEMMICOLON conditional SEMMICOLON var_declaration R_PARENTHESIS . L_BRACE expressions R_BRACE
+
+    L_BRACE         shift and go to state 95
+
+
+state 93
+
+    (43) while_loop -> WHILE L_PARENTHESIS conditional R_PARENTHESIS DO L_BRACE expressions R_BRACE .
+
+    END             reduce using rule 43 (while_loop -> WHILE L_PARENTHESIS conditional R_PARENTHESIS DO L_BRACE expressions R_BRACE .)
+    IDENTIFIER      reduce using rule 43 (while_loop -> WHILE L_PARENTHESIS conditional R_PARENTHESIS DO L_BRACE expressions R_BRACE .)
+    IF              reduce using rule 43 (while_loop -> WHILE L_PARENTHESIS conditional R_PARENTHESIS DO L_BRACE expressions R_BRACE .)
+    FOR             reduce using rule 43 (while_loop -> WHILE L_PARENTHESIS conditional R_PARENTHESIS DO L_BRACE expressions R_BRACE .)
+    WHILE           reduce using rule 43 (while_loop -> WHILE L_PARENTHESIS conditional R_PARENTHESIS DO L_BRACE expressions R_BRACE .)
+    PRINT           reduce using rule 43 (while_loop -> WHILE L_PARENTHESIS conditional R_PARENTHESIS DO L_BRACE expressions R_BRACE .)
+    INT             reduce using rule 43 (while_loop -> WHILE L_PARENTHESIS conditional R_PARENTHESIS DO L_BRACE expressions R_BRACE .)
+    REAL            reduce using rule 43 (while_loop -> WHILE L_PARENTHESIS conditional R_PARENTHESIS DO L_BRACE expressions R_BRACE .)
+    BOOLEAN         reduce using rule 43 (while_loop -> WHILE L_PARENTHESIS conditional R_PARENTHESIS DO L_BRACE expressions R_BRACE .)
+    STRING          reduce using rule 43 (while_loop -> WHILE L_PARENTHESIS conditional R_PARENTHESIS DO L_BRACE expressions R_BRACE .)
+    R_BRACE         reduce using rule 43 (while_loop -> WHILE L_PARENTHESIS conditional R_PARENTHESIS DO L_BRACE expressions R_BRACE .)
+
+
+state 94
+
+    (41) if_statement -> IF L_PARENTHESIS conditional R_PARENTHESIS THEN L_BRACE expressions R_BRACE ELSE . L_BRACE expressions R_BRACE
+
+    L_BRACE         shift and go to state 96
+
+
+state 95
+
+    (42) for_loop -> FOR L_PARENTHESIS statement SEMMICOLON conditional SEMMICOLON var_declaration R_PARENTHESIS L_BRACE . expressions R_BRACE
+    (2) expressions -> . expressions expression
+    (3) expressions -> . expression
+    (4) expression -> . var_declaration
+    (5) expression -> . if_statement
+    (6) expression -> . for_loop
+    (7) expression -> . while_loop
+    (8) expression -> . print
+    (9) expression -> . empty
+    (14) var_declaration -> . data_type DOUBLECOLON declarations
+    (17) var_declaration -> . IDENTIFIER ASSING statement
+    (40) if_statement -> . IF L_PARENTHESIS conditional R_PARENTHESIS THEN L_BRACE expressions R_BRACE
+    (41) if_statement -> . IF L_PARENTHESIS conditional R_PARENTHESIS THEN L_BRACE expressions R_BRACE ELSE L_BRACE expressions R_BRACE
+    (42) for_loop -> . FOR L_PARENTHESIS statement SEMMICOLON conditional SEMMICOLON var_declaration R_PARENTHESIS L_BRACE expressions R_BRACE
+    (43) while_loop -> . WHILE L_PARENTHESIS conditional R_PARENTHESIS DO L_BRACE expressions R_BRACE
+    (44) print -> . PRINT L_PARENTHESIS statement R_PARENTHESIS
+    (45) empty -> .
+    (10) data_type -> . INT
+    (11) data_type -> . REAL
+    (12) data_type -> . BOOLEAN
+    (13) data_type -> . STRING
+
+  ! shift/reduce conflict for IDENTIFIER resolved as shift
+  ! shift/reduce conflict for IF resolved as shift
+  ! shift/reduce conflict for FOR resolved as shift
+  ! shift/reduce conflict for WHILE resolved as shift
+  ! shift/reduce conflict for PRINT resolved as shift
+  ! shift/reduce conflict for INT resolved as shift
+  ! shift/reduce conflict for REAL resolved as shift
+  ! shift/reduce conflict for BOOLEAN resolved as shift
+  ! shift/reduce conflict for STRING resolved as shift
+    IDENTIFIER      shift and go to state 13
+    IF              shift and go to state 14
+    FOR             shift and go to state 15
+    WHILE           shift and go to state 16
+    PRINT           shift and go to state 17
+    R_BRACE         reduce using rule 45 (empty -> .)
+    INT             shift and go to state 18
+    REAL            shift and go to state 19
+    BOOLEAN         shift and go to state 20
+    STRING          shift and go to state 21
+
+  ! IDENTIFIER      [ reduce using rule 45 (empty -> .) ]
+  ! IF              [ reduce using rule 45 (empty -> .) ]
+  ! FOR             [ reduce using rule 45 (empty -> .) ]
+  ! WHILE           [ reduce using rule 45 (empty -> .) ]
+  ! PRINT           [ reduce using rule 45 (empty -> .) ]
+  ! INT             [ reduce using rule 45 (empty -> .) ]
+  ! REAL            [ reduce using rule 45 (empty -> .) ]
+  ! BOOLEAN         [ reduce using rule 45 (empty -> .) ]
+  ! STRING          [ reduce using rule 45 (empty -> .) ]
+
+    var_declaration                shift and go to state 6
+    expressions                    shift and go to state 97
+    expression                     shift and go to state 5
+    if_statement                   shift and go to state 7
+    for_loop                       shift and go to state 8
+    while_loop                     shift and go to state 9
+    print                          shift and go to state 10
+    empty                          shift and go to state 11
+    data_type                      shift and go to state 12
+
+state 96
+
+    (41) if_statement -> IF L_PARENTHESIS conditional R_PARENTHESIS THEN L_BRACE expressions R_BRACE ELSE L_BRACE . expressions R_BRACE
+    (2) expressions -> . expressions expression
+    (3) expressions -> . expression
+    (4) expression -> . var_declaration
+    (5) expression -> . if_statement
+    (6) expression -> . for_loop
+    (7) expression -> . while_loop
+    (8) expression -> . print
+    (9) expression -> . empty
+    (14) var_declaration -> . data_type DOUBLECOLON declarations
+    (17) var_declaration -> . IDENTIFIER ASSING statement
+    (40) if_statement -> . IF L_PARENTHESIS conditional R_PARENTHESIS THEN L_BRACE expressions R_BRACE
+    (41) if_statement -> . IF L_PARENTHESIS conditional R_PARENTHESIS THEN L_BRACE expressions R_BRACE ELSE L_BRACE expressions R_BRACE
+    (42) for_loop -> . FOR L_PARENTHESIS statement SEMMICOLON conditional SEMMICOLON var_declaration R_PARENTHESIS L_BRACE expressions R_BRACE
+    (43) while_loop -> . WHILE L_PARENTHESIS conditional R_PARENTHESIS DO L_BRACE expressions R_BRACE
+    (44) print -> . PRINT L_PARENTHESIS statement R_PARENTHESIS
+    (45) empty -> .
+    (10) data_type -> . INT
+    (11) data_type -> . REAL
+    (12) data_type -> . BOOLEAN
+    (13) data_type -> . STRING
+
+  ! shift/reduce conflict for IDENTIFIER resolved as shift
+  ! shift/reduce conflict for IF resolved as shift
+  ! shift/reduce conflict for FOR resolved as shift
+  ! shift/reduce conflict for WHILE resolved as shift
+  ! shift/reduce conflict for PRINT resolved as shift
+  ! shift/reduce conflict for INT resolved as shift
+  ! shift/reduce conflict for REAL resolved as shift
+  ! shift/reduce conflict for BOOLEAN resolved as shift
+  ! shift/reduce conflict for STRING resolved as shift
+    IDENTIFIER      shift and go to state 13
+    IF              shift and go to state 14
+    FOR             shift and go to state 15
+    WHILE           shift and go to state 16
+    PRINT           shift and go to state 17
+    R_BRACE         reduce using rule 45 (empty -> .)
+    INT             shift and go to state 18
+    REAL            shift and go to state 19
+    BOOLEAN         shift and go to state 20
+    STRING          shift and go to state 21
+
+  ! IDENTIFIER      [ reduce using rule 45 (empty -> .) ]
+  ! IF              [ reduce using rule 45 (empty -> .) ]
+  ! FOR             [ reduce using rule 45 (empty -> .) ]
+  ! WHILE           [ reduce using rule 45 (empty -> .) ]
+  ! PRINT           [ reduce using rule 45 (empty -> .) ]
+  ! INT             [ reduce using rule 45 (empty -> .) ]
+  ! REAL            [ reduce using rule 45 (empty -> .) ]
+  ! BOOLEAN         [ reduce using rule 45 (empty -> .) ]
+  ! STRING          [ reduce using rule 45 (empty -> .) ]
+
+    expressions                    shift and go to state 98
+    expression                     shift and go to state 5
+    var_declaration                shift and go to state 6
+    if_statement                   shift and go to state 7
+    for_loop                       shift and go to state 8
+    while_loop                     shift and go to state 9
+    print                          shift and go to state 10
+    empty                          shift and go to state 11
+    data_type                      shift and go to state 12
+
+state 97
+
+    (42) for_loop -> FOR L_PARENTHESIS statement SEMMICOLON conditional SEMMICOLON var_declaration R_PARENTHESIS L_BRACE expressions . R_BRACE
+    (2) expressions -> expressions . expression
+    (4) expression -> . var_declaration
+    (5) expression -> . if_statement
+    (6) expression -> . for_loop
+    (7) expression -> . while_loop
+    (8) expression -> . print
+    (9) expression -> . empty
+    (14) var_declaration -> . data_type DOUBLECOLON declarations
+    (17) var_declaration -> . IDENTIFIER ASSING statement
+    (40) if_statement -> . IF L_PARENTHESIS conditional R_PARENTHESIS THEN L_BRACE expressions R_BRACE
+    (41) if_statement -> . IF L_PARENTHESIS conditional R_PARENTHESIS THEN L_BRACE expressions R_BRACE ELSE L_BRACE expressions R_BRACE
+    (42) for_loop -> . FOR L_PARENTHESIS statement SEMMICOLON conditional SEMMICOLON var_declaration R_PARENTHESIS L_BRACE expressions R_BRACE
+    (43) while_loop -> . WHILE L_PARENTHESIS conditional R_PARENTHESIS DO L_BRACE expressions R_BRACE
+    (44) print -> . PRINT L_PARENTHESIS statement R_PARENTHESIS
+    (45) empty -> .
+    (10) data_type -> . INT
+    (11) data_type -> . REAL
+    (12) data_type -> . BOOLEAN
+    (13) data_type -> . STRING
+
+  ! shift/reduce conflict for R_BRACE resolved as shift
+  ! shift/reduce conflict for IDENTIFIER resolved as shift
+  ! shift/reduce conflict for IF resolved as shift
+  ! shift/reduce conflict for FOR resolved as shift
+  ! shift/reduce conflict for WHILE resolved as shift
+  ! shift/reduce conflict for PRINT resolved as shift
+  ! shift/reduce conflict for INT resolved as shift
+  ! shift/reduce conflict for REAL resolved as shift
+  ! shift/reduce conflict for BOOLEAN resolved as shift
+  ! shift/reduce conflict for STRING resolved as shift
+    R_BRACE         shift and go to state 99
+    IDENTIFIER      shift and go to state 13
+    IF              shift and go to state 14
+    FOR             shift and go to state 15
+    WHILE           shift and go to state 16
+    PRINT           shift and go to state 17
+    INT             shift and go to state 18
+    REAL            shift and go to state 19
+    BOOLEAN         shift and go to state 20
+    STRING          shift and go to state 21
+
+  ! R_BRACE         [ reduce using rule 45 (empty -> .) ]
+  ! IDENTIFIER      [ reduce using rule 45 (empty -> .) ]
+  ! IF              [ reduce using rule 45 (empty -> .) ]
+  ! FOR             [ reduce using rule 45 (empty -> .) ]
+  ! WHILE           [ reduce using rule 45 (empty -> .) ]
+  ! PRINT           [ reduce using rule 45 (empty -> .) ]
+  ! INT             [ reduce using rule 45 (empty -> .) ]
+  ! REAL            [ reduce using rule 45 (empty -> .) ]
+  ! BOOLEAN         [ reduce using rule 45 (empty -> .) ]
+  ! STRING          [ reduce using rule 45 (empty -> .) ]
+
+    var_declaration                shift and go to state 6
+    expression                     shift and go to state 23
+    if_statement                   shift and go to state 7
+    for_loop                       shift and go to state 8
+    while_loop                     shift and go to state 9
+    print                          shift and go to state 10
+    empty                          shift and go to state 11
+    data_type                      shift and go to state 12
+
+state 98
+
+    (41) if_statement -> IF L_PARENTHESIS conditional R_PARENTHESIS THEN L_BRACE expressions R_BRACE ELSE L_BRACE expressions . R_BRACE
+    (2) expressions -> expressions . expression
+    (4) expression -> . var_declaration
+    (5) expression -> . if_statement
+    (6) expression -> . for_loop
+    (7) expression -> . while_loop
+    (8) expression -> . print
+    (9) expression -> . empty
+    (14) var_declaration -> . data_type DOUBLECOLON declarations
+    (17) var_declaration -> . IDENTIFIER ASSING statement
+    (40) if_statement -> . IF L_PARENTHESIS conditional R_PARENTHESIS THEN L_BRACE expressions R_BRACE
+    (41) if_statement -> . IF L_PARENTHESIS conditional R_PARENTHESIS THEN L_BRACE expressions R_BRACE ELSE L_BRACE expressions R_BRACE
+    (42) for_loop -> . FOR L_PARENTHESIS statement SEMMICOLON conditional SEMMICOLON var_declaration R_PARENTHESIS L_BRACE expressions R_BRACE
+    (43) while_loop -> . WHILE L_PARENTHESIS conditional R_PARENTHESIS DO L_BRACE expressions R_BRACE
+    (44) print -> . PRINT L_PARENTHESIS statement R_PARENTHESIS
+    (45) empty -> .
+    (10) data_type -> . INT
+    (11) data_type -> . REAL
+    (12) data_type -> . BOOLEAN
+    (13) data_type -> . STRING
+
+  ! shift/reduce conflict for R_BRACE resolved as shift
+  ! shift/reduce conflict for IDENTIFIER resolved as shift
+  ! shift/reduce conflict for IF resolved as shift
+  ! shift/reduce conflict for FOR resolved as shift
+  ! shift/reduce conflict for WHILE resolved as shift
+  ! shift/reduce conflict for PRINT resolved as shift
+  ! shift/reduce conflict for INT resolved as shift
+  ! shift/reduce conflict for REAL resolved as shift
+  ! shift/reduce conflict for BOOLEAN resolved as shift
+  ! shift/reduce conflict for STRING resolved as shift
+    R_BRACE         shift and go to state 100
+    IDENTIFIER      shift and go to state 13
+    IF              shift and go to state 14
+    FOR             shift and go to state 15
+    WHILE           shift and go to state 16
+    PRINT           shift and go to state 17
+    INT             shift and go to state 18
+    REAL            shift and go to state 19
+    BOOLEAN         shift and go to state 20
+    STRING          shift and go to state 21
+
+  ! R_BRACE         [ reduce using rule 45 (empty -> .) ]
+  ! IDENTIFIER      [ reduce using rule 45 (empty -> .) ]
+  ! IF              [ reduce using rule 45 (empty -> .) ]
+  ! FOR             [ reduce using rule 45 (empty -> .) ]
+  ! WHILE           [ reduce using rule 45 (empty -> .) ]
+  ! PRINT           [ reduce using rule 45 (empty -> .) ]
+  ! INT             [ reduce using rule 45 (empty -> .) ]
+  ! REAL            [ reduce using rule 45 (empty -> .) ]
+  ! BOOLEAN         [ reduce using rule 45 (empty -> .) ]
+  ! STRING          [ reduce using rule 45 (empty -> .) ]
+
+    expression                     shift and go to state 23
+    var_declaration                shift and go to state 6
+    if_statement                   shift and go to state 7
+    for_loop                       shift and go to state 8
+    while_loop                     shift and go to state 9
+    print                          shift and go to state 10
+    empty                          shift and go to state 11
+    data_type                      shift and go to state 12
+
+state 99
+
+    (42) for_loop -> FOR L_PARENTHESIS statement SEMMICOLON conditional SEMMICOLON var_declaration R_PARENTHESIS L_BRACE expressions R_BRACE .
+
+    END             reduce using rule 42 (for_loop -> FOR L_PARENTHESIS statement SEMMICOLON conditional SEMMICOLON var_declaration R_PARENTHESIS L_BRACE expressions R_BRACE .)
+    IDENTIFIER      reduce using rule 42 (for_loop -> FOR L_PARENTHESIS statement SEMMICOLON conditional SEMMICOLON var_declaration R_PARENTHESIS L_BRACE expressions R_BRACE .)
+    IF              reduce using rule 42 (for_loop -> FOR L_PARENTHESIS statement SEMMICOLON conditional SEMMICOLON var_declaration R_PARENTHESIS L_BRACE expressions R_BRACE .)
+    FOR             reduce using rule 42 (for_loop -> FOR L_PARENTHESIS statement SEMMICOLON conditional SEMMICOLON var_declaration R_PARENTHESIS L_BRACE expressions R_BRACE .)
+    WHILE           reduce using rule 42 (for_loop -> FOR L_PARENTHESIS statement SEMMICOLON conditional SEMMICOLON var_declaration R_PARENTHESIS L_BRACE expressions R_BRACE .)
+    PRINT           reduce using rule 42 (for_loop -> FOR L_PARENTHESIS statement SEMMICOLON conditional SEMMICOLON var_declaration R_PARENTHESIS L_BRACE expressions R_BRACE .)
+    INT             reduce using rule 42 (for_loop -> FOR L_PARENTHESIS statement SEMMICOLON conditional SEMMICOLON var_declaration R_PARENTHESIS L_BRACE expressions R_BRACE .)
+    REAL            reduce using rule 42 (for_loop -> FOR L_PARENTHESIS statement SEMMICOLON conditional SEMMICOLON var_declaration R_PARENTHESIS L_BRACE expressions R_BRACE .)
+    BOOLEAN         reduce using rule 42 (for_loop -> FOR L_PARENTHESIS statement SEMMICOLON conditional SEMMICOLON var_declaration R_PARENTHESIS L_BRACE expressions R_BRACE .)
+    STRING          reduce using rule 42 (for_loop -> FOR L_PARENTHESIS statement SEMMICOLON conditional SEMMICOLON var_declaration R_PARENTHESIS L_BRACE expressions R_BRACE .)
+    R_BRACE         reduce using rule 42 (for_loop -> FOR L_PARENTHESIS statement SEMMICOLON conditional SEMMICOLON var_declaration R_PARENTHESIS L_BRACE expressions R_BRACE .)
+
+
+state 100
+
+    (41) if_statement -> IF L_PARENTHESIS conditional R_PARENTHESIS THEN L_BRACE expressions R_BRACE ELSE L_BRACE expressions R_BRACE .
+
+    END             reduce using rule 41 (if_statement -> IF L_PARENTHESIS conditional R_PARENTHESIS THEN L_BRACE expressions R_BRACE ELSE L_BRACE expressions R_BRACE .)
+    IDENTIFIER      reduce using rule 41 (if_statement -> IF L_PARENTHESIS conditional R_PARENTHESIS THEN L_BRACE expressions R_BRACE ELSE L_BRACE expressions R_BRACE .)
+    IF              reduce using rule 41 (if_statement -> IF L_PARENTHESIS conditional R_PARENTHESIS THEN L_BRACE expressions R_BRACE ELSE L_BRACE expressions R_BRACE .)
+    FOR             reduce using rule 41 (if_statement -> IF L_PARENTHESIS conditional R_PARENTHESIS THEN L_BRACE expressions R_BRACE ELSE L_BRACE expressions R_BRACE .)
+    WHILE           reduce using rule 41 (if_statement -> IF L_PARENTHESIS conditional R_PARENTHESIS THEN L_BRACE expressions R_BRACE ELSE L_BRACE expressions R_BRACE .)
+    PRINT           reduce using rule 41 (if_statement -> IF L_PARENTHESIS conditional R_PARENTHESIS THEN L_BRACE expressions R_BRACE ELSE L_BRACE expressions R_BRACE .)
+    INT             reduce using rule 41 (if_statement -> IF L_PARENTHESIS conditional R_PARENTHESIS THEN L_BRACE expressions R_BRACE ELSE L_BRACE expressions R_BRACE .)
+    REAL            reduce using rule 41 (if_statement -> IF L_PARENTHESIS conditional R_PARENTHESIS THEN L_BRACE expressions R_BRACE ELSE L_BRACE expressions R_BRACE .)
+    BOOLEAN         reduce using rule 41 (if_statement -> IF L_PARENTHESIS conditional R_PARENTHESIS THEN L_BRACE expressions R_BRACE ELSE L_BRACE expressions R_BRACE .)
+    STRING          reduce using rule 41 (if_statement -> IF L_PARENTHESIS conditional R_PARENTHESIS THEN L_BRACE expressions R_BRACE ELSE L_BRACE expressions R_BRACE .)
+    R_BRACE         reduce using rule 41 (if_statement -> IF L_PARENTHESIS conditional R_PARENTHESIS THEN L_BRACE expressions R_BRACE ELSE L_BRACE expressions R_BRACE .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for IDENTIFIER in state 3 resolved as shift
+WARNING: shift/reduce conflict for IF in state 3 resolved as shift
+WARNING: shift/reduce conflict for FOR in state 3 resolved as shift
+WARNING: shift/reduce conflict for WHILE in state 3 resolved as shift
+WARNING: shift/reduce conflict for PRINT in state 3 resolved as shift
+WARNING: shift/reduce conflict for INT in state 3 resolved as shift
+WARNING: shift/reduce conflict for REAL in state 3 resolved as shift
+WARNING: shift/reduce conflict for BOOLEAN in state 3 resolved as shift
+WARNING: shift/reduce conflict for STRING in state 3 resolved as shift
+WARNING: shift/reduce conflict for END in state 4 resolved as shift
+WARNING: shift/reduce conflict for IDENTIFIER in state 4 resolved as shift
+WARNING: shift/reduce conflict for IF in state 4 resolved as shift
+WARNING: shift/reduce conflict for FOR in state 4 resolved as shift
+WARNING: shift/reduce conflict for WHILE in state 4 resolved as shift
+WARNING: shift/reduce conflict for PRINT in state 4 resolved as shift
+WARNING: shift/reduce conflict for INT in state 4 resolved as shift
+WARNING: shift/reduce conflict for REAL in state 4 resolved as shift
+WARNING: shift/reduce conflict for BOOLEAN in state 4 resolved as shift
+WARNING: shift/reduce conflict for STRING in state 4 resolved as shift
+WARNING: shift/reduce conflict for R_PARENTHESIS in state 53 resolved as shift
+WARNING: shift/reduce conflict for EQUAL in state 75 resolved as shift
+WARNING: shift/reduce conflict for NOT_EQUAL in state 75 resolved as shift
+WARNING: shift/reduce conflict for GREATER in state 75 resolved as shift
+WARNING: shift/reduce conflict for LESS in state 75 resolved as shift
+WARNING: shift/reduce conflict for GREATER_EQUAL in state 75 resolved as shift
+WARNING: shift/reduce conflict for LESS_EQUAL in state 75 resolved as shift
+WARNING: shift/reduce conflict for AND in state 75 resolved as shift
+WARNING: shift/reduce conflict for OR in state 75 resolved as shift
+WARNING: shift/reduce conflict for EQUAL in state 76 resolved as shift
+WARNING: shift/reduce conflict for NOT_EQUAL in state 76 resolved as shift
+WARNING: shift/reduce conflict for GREATER in state 76 resolved as shift
+WARNING: shift/reduce conflict for LESS in state 76 resolved as shift
+WARNING: shift/reduce conflict for GREATER_EQUAL in state 76 resolved as shift
+WARNING: shift/reduce conflict for LESS_EQUAL in state 76 resolved as shift
+WARNING: shift/reduce conflict for AND in state 76 resolved as shift
+WARNING: shift/reduce conflict for OR in state 76 resolved as shift
+WARNING: shift/reduce conflict for EQUAL in state 77 resolved as shift
+WARNING: shift/reduce conflict for NOT_EQUAL in state 77 resolved as shift
+WARNING: shift/reduce conflict for GREATER in state 77 resolved as shift
+WARNING: shift/reduce conflict for LESS in state 77 resolved as shift
+WARNING: shift/reduce conflict for GREATER_EQUAL in state 77 resolved as shift
+WARNING: shift/reduce conflict for LESS_EQUAL in state 77 resolved as shift
+WARNING: shift/reduce conflict for AND in state 77 resolved as shift
+WARNING: shift/reduce conflict for OR in state 77 resolved as shift
+WARNING: shift/reduce conflict for EQUAL in state 78 resolved as shift
+WARNING: shift/reduce conflict for NOT_EQUAL in state 78 resolved as shift
+WARNING: shift/reduce conflict for GREATER in state 78 resolved as shift
+WARNING: shift/reduce conflict for LESS in state 78 resolved as shift
+WARNING: shift/reduce conflict for GREATER_EQUAL in state 78 resolved as shift
+WARNING: shift/reduce conflict for LESS_EQUAL in state 78 resolved as shift
+WARNING: shift/reduce conflict for AND in state 78 resolved as shift
+WARNING: shift/reduce conflict for OR in state 78 resolved as shift
+WARNING: shift/reduce conflict for EQUAL in state 79 resolved as shift
+WARNING: shift/reduce conflict for NOT_EQUAL in state 79 resolved as shift
+WARNING: shift/reduce conflict for GREATER in state 79 resolved as shift
+WARNING: shift/reduce conflict for LESS in state 79 resolved as shift
+WARNING: shift/reduce conflict for GREATER_EQUAL in state 79 resolved as shift
+WARNING: shift/reduce conflict for LESS_EQUAL in state 79 resolved as shift
+WARNING: shift/reduce conflict for AND in state 79 resolved as shift
+WARNING: shift/reduce conflict for OR in state 79 resolved as shift
+WARNING: shift/reduce conflict for EQUAL in state 80 resolved as shift
+WARNING: shift/reduce conflict for NOT_EQUAL in state 80 resolved as shift
+WARNING: shift/reduce conflict for GREATER in state 80 resolved as shift
+WARNING: shift/reduce conflict for LESS in state 80 resolved as shift
+WARNING: shift/reduce conflict for GREATER_EQUAL in state 80 resolved as shift
+WARNING: shift/reduce conflict for LESS_EQUAL in state 80 resolved as shift
+WARNING: shift/reduce conflict for AND in state 80 resolved as shift
+WARNING: shift/reduce conflict for OR in state 80 resolved as shift
+WARNING: shift/reduce conflict for IDENTIFIER in state 85 resolved as shift
+WARNING: shift/reduce conflict for IF in state 85 resolved as shift
+WARNING: shift/reduce conflict for FOR in state 85 resolved as shift
+WARNING: shift/reduce conflict for WHILE in state 85 resolved as shift
+WARNING: shift/reduce conflict for PRINT in state 85 resolved as shift
+WARNING: shift/reduce conflict for INT in state 85 resolved as shift
+WARNING: shift/reduce conflict for REAL in state 85 resolved as shift
+WARNING: shift/reduce conflict for BOOLEAN in state 85 resolved as shift
+WARNING: shift/reduce conflict for STRING in state 85 resolved as shift
+WARNING: shift/reduce conflict for IDENTIFIER in state 87 resolved as shift
+WARNING: shift/reduce conflict for IF in state 87 resolved as shift
+WARNING: shift/reduce conflict for FOR in state 87 resolved as shift
+WARNING: shift/reduce conflict for WHILE in state 87 resolved as shift
+WARNING: shift/reduce conflict for PRINT in state 87 resolved as shift
+WARNING: shift/reduce conflict for INT in state 87 resolved as shift
+WARNING: shift/reduce conflict for REAL in state 87 resolved as shift
+WARNING: shift/reduce conflict for BOOLEAN in state 87 resolved as shift
+WARNING: shift/reduce conflict for STRING in state 87 resolved as shift
+WARNING: shift/reduce conflict for R_BRACE in state 88 resolved as shift
+WARNING: shift/reduce conflict for IDENTIFIER in state 88 resolved as shift
+WARNING: shift/reduce conflict for IF in state 88 resolved as shift
+WARNING: shift/reduce conflict for FOR in state 88 resolved as shift
+WARNING: shift/reduce conflict for WHILE in state 88 resolved as shift
+WARNING: shift/reduce conflict for PRINT in state 88 resolved as shift
+WARNING: shift/reduce conflict for INT in state 88 resolved as shift
+WARNING: shift/reduce conflict for REAL in state 88 resolved as shift
+WARNING: shift/reduce conflict for BOOLEAN in state 88 resolved as shift
+WARNING: shift/reduce conflict for STRING in state 88 resolved as shift
+WARNING: shift/reduce conflict for R_BRACE in state 90 resolved as shift
+WARNING: shift/reduce conflict for IDENTIFIER in state 90 resolved as shift
+WARNING: shift/reduce conflict for IF in state 90 resolved as shift
+WARNING: shift/reduce conflict for FOR in state 90 resolved as shift
+WARNING: shift/reduce conflict for WHILE in state 90 resolved as shift
+WARNING: shift/reduce conflict for PRINT in state 90 resolved as shift
+WARNING: shift/reduce conflict for INT in state 90 resolved as shift
+WARNING: shift/reduce conflict for REAL in state 90 resolved as shift
+WARNING: shift/reduce conflict for BOOLEAN in state 90 resolved as shift
+WARNING: shift/reduce conflict for STRING in state 90 resolved as shift
+WARNING: shift/reduce conflict for IDENTIFIER in state 95 resolved as shift
+WARNING: shift/reduce conflict for IF in state 95 resolved as shift
+WARNING: shift/reduce conflict for FOR in state 95 resolved as shift
+WARNING: shift/reduce conflict for WHILE in state 95 resolved as shift
+WARNING: shift/reduce conflict for PRINT in state 95 resolved as shift
+WARNING: shift/reduce conflict for INT in state 95 resolved as shift
+WARNING: shift/reduce conflict for REAL in state 95 resolved as shift
+WARNING: shift/reduce conflict for BOOLEAN in state 95 resolved as shift
+WARNING: shift/reduce conflict for STRING in state 95 resolved as shift
+WARNING: shift/reduce conflict for IDENTIFIER in state 96 resolved as shift
+WARNING: shift/reduce conflict for IF in state 96 resolved as shift
+WARNING: shift/reduce conflict for FOR in state 96 resolved as shift
+WARNING: shift/reduce conflict for WHILE in state 96 resolved as shift
+WARNING: shift/reduce conflict for PRINT in state 96 resolved as shift
+WARNING: shift/reduce conflict for INT in state 96 resolved as shift
+WARNING: shift/reduce conflict for REAL in state 96 resolved as shift
+WARNING: shift/reduce conflict for BOOLEAN in state 96 resolved as shift
+WARNING: shift/reduce conflict for STRING in state 96 resolved as shift
+WARNING: shift/reduce conflict for R_BRACE in state 97 resolved as shift
+WARNING: shift/reduce conflict for IDENTIFIER in state 97 resolved as shift
+WARNING: shift/reduce conflict for IF in state 97 resolved as shift
+WARNING: shift/reduce conflict for FOR in state 97 resolved as shift
+WARNING: shift/reduce conflict for WHILE in state 97 resolved as shift
+WARNING: shift/reduce conflict for PRINT in state 97 resolved as shift
+WARNING: shift/reduce conflict for INT in state 97 resolved as shift
+WARNING: shift/reduce conflict for REAL in state 97 resolved as shift
+WARNING: shift/reduce conflict for BOOLEAN in state 97 resolved as shift
+WARNING: shift/reduce conflict for STRING in state 97 resolved as shift
+WARNING: shift/reduce conflict for R_BRACE in state 98 resolved as shift
+WARNING: shift/reduce conflict for IDENTIFIER in state 98 resolved as shift
+WARNING: shift/reduce conflict for IF in state 98 resolved as shift
+WARNING: shift/reduce conflict for FOR in state 98 resolved as shift
+WARNING: shift/reduce conflict for WHILE in state 98 resolved as shift
+WARNING: shift/reduce conflict for PRINT in state 98 resolved as shift
+WARNING: shift/reduce conflict for INT in state 98 resolved as shift
+WARNING: shift/reduce conflict for REAL in state 98 resolved as shift
+WARNING: shift/reduce conflict for BOOLEAN in state 98 resolved as shift
+WARNING: shift/reduce conflict for STRING in state 98 resolved as shift

@@ -1,0 +1,41 @@
+func end
+
+int :: a,b,x,y,i,z,j
+string :: hola
+bool :: lol
+
+a |= 0
+b |= 3
+j |= 0
+lol |= false
+hola |= "hola"
+
+tnirp)hola(
+tnirp)b(
+
+tnirp)"------- ejemplo del if y else ------"(
+
+else) a <= b(thenot
+}
+    tnirp)"es mayor"(
+{
+if
+}
+    tnirp)"No es mayor"(
+{
+
+tnirp)"------- ejemplo del while ------"(
+
+for )a > 10( donot
+}
+    a |= a - 1
+    tnirp)a(
+{
+
+tnirp)"------- ejemplo del for ------"(
+
+while )j;j>10;j |= j - 1(}
+    tnirp)j(
+{
+
+start func end
