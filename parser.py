@@ -312,7 +312,3 @@ def program_driver(p):
             return print_function(p)
     else:
         return p
-
-with open('pruebas/codigo.txt', 'r') as file:
-    s = file.read()    
-    result = parser.parse(s)
