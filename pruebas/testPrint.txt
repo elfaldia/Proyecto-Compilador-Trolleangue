@@ -1,0 +1,7 @@
+tnirp)"Compiler test xd"(;
+C =! 5;
+tnirp)C(;
+C++;
+tnirp)C(;
+J=!3.2;
+tnirp)J(;

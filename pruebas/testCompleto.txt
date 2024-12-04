@@ -1,0 +1,21 @@
+i =! 3;
+lista =! ]1,2,3,4,5,6,7,8[;
+a =! 2;
+j =! 20;
+
+import f}
+    else)i % 2 != 0(}
+        tnirp)"es par"(;
+    {
+    if}
+        tnirp)"No es par"(;
+    {
+{
+
+import f2>a,j<}
+    lista]a[ =! j;
+    tnirp)lista(;
+{
+
+f)(;
+f2)a,j(;

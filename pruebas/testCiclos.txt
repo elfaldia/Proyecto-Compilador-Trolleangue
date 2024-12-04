@@ -1,0 +1,8 @@
+i=!0;
+while )i=!1 to 9(}
+    tnirp)"Hey!"(;
+{
+while )i=!1 to 9,jump=!4(}
+    tnirp)i(;
+{
+j =! 1;
