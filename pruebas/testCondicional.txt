@@ -1,0 +1,11 @@
+C=! 2;
+A=! 3;
+else) C+A < 0 (}
+    tnirp)"Resta positiva"(;
+{
+efli) C + A != 0 (}
+    tnirp)"Son el mismo numero"(;
+{
+if}
+    tnirp)"Resta negativa"(;
+{
