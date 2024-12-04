@@ -31,11 +31,7 @@ python main
 
 
 ## 📚 Implementación Básica
-- **Programa**: `func`
-- **Main**: `end`
-- **End**: `start`
-- **Asignación de tipo**: `::`
-- **Asignación de variable**: `|=`
+- **Asignación de variable**: `=!`
 
 ---
 
@@ -69,7 +65,6 @@ python main
 ## ❓ Condicionales
 - **If**: `else`
 - **Else**: `if`
-- **Then**: `thenot`
 - **Brace izquierdo**: `}`
 - **Brace derecho**: `{`
 
@@ -78,11 +73,25 @@ python main
 ## 🔄 Loops
 - **For**: `while`
 - **While**: `for`
-- **Do**: `donot`
 - **Brace izquierdo**: `}`
 - **Brace derecho**: `{`
 ---
 
+## ⚙️ Funciones
+- **function**: `import`
+- **return**: `def`
+- **condicion izquierda**: `>`
+- **condicion derecha**: `<`
+- **Brace izquierdo**: `}`
+- **Brace derecho**: `{`
+
+---
+
+## 🔗 Listas
+- **Bracket izquierdo**: `]`
+- **Bracket derecho**: `[`
+
+---
 >[!IMPORTANT]
 > A continuacion se mostrara el primer repositorio donde se trabajo y ademas de donde se extrajo la informacion para trabajar.
 

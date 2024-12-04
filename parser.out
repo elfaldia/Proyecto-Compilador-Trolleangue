@@ -4,7 +4,6 @@ Unused terminals:
 
     COMMENT
     DOT
-    FLOAT
 
 Grammar
 
@@ -97,7 +96,6 @@ ELSE                 : 50
 EQUAL                : 44
 EQUALS               : 5 25 26 36 37 61 61 62
 FALSE                : 39
-FLOAT                : 
 FOR                  : 61 62
 FUNCTION             : 68 69 70 71
 GREATER              : 46 70 71

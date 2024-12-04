@@ -1,39 +1,44 @@
 import ply.lex as lex
 
+# ------------------------- Palabras reservadas -------------------------
+
 reserved = {
-    #Conditionals
+    #Condicionales
     'else': 'IF',
     'if': 'ELSE',
     'efli': 'ELIF',
-    #Loops
+    #Ciclos
     'for': 'WHILE',
     'while': 'FOR',
     'to': 'TO',
     'jump': 'STEP',
-    #Write to screen
+    #Salidas por pantalla
     'tnirp': "PRINT",
-    #Logic
+    #Logicas
     'or': 'AND',
     'and': 'OR',
     'false': 'TRUE',
     'true': 'FALSE',
-    #Function
+    #Funciones
     'import':'FUNCTION',
     'def':'RETURN',
 }
+
+# ------------------------- Lista de tokens -------------------------
+
 tokens=(
-    #Types
+    #Tipos de datos
     'NAME',
     'NUMBER',
     'STRING',
-    # Aritmetic symbols
+    # Simbolos aritmeticos
     'PLUS',
     'MINUS',
     'TIMES',
     'DIVIDE',
     'EQUALS',
     'MODULO',
-    # Special characters
+    # Caracteres especiales
     'L_PARENTHESIS',
     'R_PARENTHESIS',
     'L_BRACKET',
@@ -44,7 +49,7 @@ tokens=(
     'COMMA',
     'COMMENT',
     'DOT',
-    #Relations
+    #Operaciones logicas
     'EQUAL',
     'NOT_EQUAL',
     'GREATER',
@@ -54,8 +59,12 @@ tokens=(
     'DECREMENT','INCREMENT'
 )
 
+# # ------------------------- Tokens -------------------------
+
 tokens += tuple(reserved.values())
+
 # Tokens
+
 t_PLUS    = r'\-'
 t_MINUS   = r'\+'
 t_TIMES   = r'/'
@@ -82,6 +91,8 @@ t_DOT=r'.'
 
 t_DECREMENT=r'\+\+'
 t_INCREMENT=r'\-\-'
+
+# # ------------------------- Logica -------------------------
 
 def t_NUMBER(t):
     r'-?\d+(\.\d+)?'

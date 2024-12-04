@@ -1,6 +1,6 @@
 import parser
 
-with open('pruebas/testCondicional.txt', 'r') as file:
+with open('pruebas/testCompleto.txt', 'r') as file:
     data = file.read()
     result = parser.parser.parse(data)
 

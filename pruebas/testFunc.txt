@@ -1,0 +1,19 @@
+i =! 0;
+
+import f}
+    tnirp)"holasss"(;
+    i--;
+{
+
+f)(;
+j =! 9;
+tnirp)i(;
+
+import f2>i,j<}
+    m =! 0;
+    tnirp)"suma"(;
+    m =! i - j;
+    tnirp)m(;
+{
+
+f2)i,j(;

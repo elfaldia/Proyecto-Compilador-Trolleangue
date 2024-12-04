@@ -1,15 +1,13 @@
 from lexer import tokens
 import ply.yacc as yacc
 
-
-# rules for the arithmetic
 precedence = (
     ('left', 'PLUS', 'MINUS'),
     ('left', 'TIMES', 'DIVIDE'),
     ('right', 'UMINUS'),
 )
 
-# Store variables
+# Variables almacenadas
 variables = {}
 
 def p_statements(p):
@@ -44,12 +42,13 @@ def p_expression_string(p):
                             | boolean'''
     p[0] = p[1]
 
-####################################PRINT#################################
+# ------------------------- Print -------------------------
+
 def p_printing(p):
     'print : PRINT L_PARENTHESIS  expression_string R_PARENTHESIS SEMICOLON'
     p[0] = p[3]
 
-######################################################## OP  ########################################
+# ------------------------- Operaciones logicas -------------------------
 
 def p_expression__PARENTHESIS(p):
     'expression : L_PARENTHESIS  expression R_PARENTHESIS'
@@ -92,7 +91,6 @@ def p_factor_num(p):
     'factor : NUMBER'
     p[0] = p[1]
 
-##########
 def p_expr_uminus(p):
     'uminus : MINUS NUMBER %prec UMINUS'
     p[0] = -p[2]
@@ -101,7 +99,7 @@ def p_term_uminus(p):
     'factor : uminus'
     p[0] = p[1]
 
-###############################################  Arrays  ###########################################################
+# ------------------------- Listas -------------------------
 
 def p_assignement_array(p):
     ' assignement : array'
@@ -170,7 +168,8 @@ def p_change_element_array(p):
     else:
         variables[p[1]][p[2]][p[3]] = p[5]
 
-################################################################booleans##############################
+# ------------------------- Operaciones booleanas -------------------------
+
 def p_boolean(p):
     ''' boolean : TRUE
                 | FALSE
@@ -214,7 +213,8 @@ def p_comparison(p):
     elif p[2] == '>=':
         p[0] = p[1] <= p[3]
 
-################################################## PARTIE IF ##############################"
+# ------------------------- Condicionales -------------------------
+
 def p_else(p):
     'else : ELSE L_BRACE statements R_BRACE'
     p[0] = p[3]
@@ -274,7 +274,8 @@ def p_statement_if_else(p):
     else:  # p[1] is None
         p[0] = p[2]
 
-################################################## WHILE ##############################"
+# ------------------------- Ciclo while -------------------------
+
 def p_statement_while(p):
     'statement : loop_while'
     p[0] = p[1]
@@ -291,7 +292,8 @@ def p_loop_while(p):
             break
     p[0] = stmts
 
-##########################################################################  FOR LOOP  ##################################
+# ------------------------- Ciclo for -------------------------
+
 # for(i=0 ar 9,azmozl=3){}
 def p_for_loop(p):
     '''statement : FOR L_PARENTHESIS  NAME EQUALS expression TO expression COMMA STEP EQUALS expression R_PARENTHESIS L_BRACE statements R_BRACE'''
@@ -316,7 +318,7 @@ def p_for_loop2(p):
     else:
         p[0] = "erreur :index {} > {}".format(p[5], p[7])
 
-#################################################### Function  ################################
+# ------------------------- Funciones -------------------------
 
 def p_argument_list(p):
     '''
@@ -384,7 +386,8 @@ def p_return(p):
     '''
     p[0] = p[3]
 
-# Error rule for syntax errors
+# ------------------------- Error en caso de sintaxis -------------------------
+
 def p_error(p):
     try:
         print(f"Syntax error at {p.value!r} ")
