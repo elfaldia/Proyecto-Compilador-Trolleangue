@@ -4,6 +4,84 @@ Compilador troll con logica invsersa utilizando PLY (Python Lex-Yacc)
 
 ![Logo](https://upload.wikimedia.org/wikipedia/en/7/73/Trollface.png)
 
+
+## Análisis Léxico 
+
+### Palabras Reservadas
+Las palabras reservadas se definen en un diccionario reserved, donde sus significados están intencionadamente invertidos:
+
+    Condicionales:
+        else → IF
+        if → ELSE
+        efli → ELIF
+
+    Ciclos:
+        for → WHILE
+        while → FOR
+
+    Operadores Lógicos:
+        or → AND
+        and → OR
+
+    Otros:
+        tnirp → PRINT
+
+### Tokens Definidos
+El lexer reconoce una variedad de tokens, que incluyen:
+
+    - Tipos básicos: NAME, NUMBER, STRING.
+    - Operadores aritméticos: PLUS (-), MINUS (+), TIMES (/), DIVIDE (*), MODULO (%).
+    - Operadores lógicos: EQUAL (!=), NOT_EQUAL (==), GREATER (<), LESS (>), GREATER_EQUAL (<=), LESS_EQUAL (>=).
+    - Incremento y decremento: INCREMENT (--), DECREMENT (++).
+    - Otros: paréntesis, corchetes, llaves, COMMENT, SEMICOLON, COMMA.
+
+## Análisis Sintáctico
+
+### Precedencia
+La precedencia de operadores se define explícitamente para manejar ambigüedades:
+
+    - Operadores aritméticos (PLUS, MINUS, TIMES, DIVIDE) tienen precedencias definidas.
+    - Operador unario (UMINUS) tiene precedencia más alta y es evaluado de derecha a izquierda.
+
+### Reglas Sintácticas Principales
+
+.-Estructuras de Control
+
+    - Condicionales (if, else, elif):
+        Implementa reglas para condicionales anidados y combinaciones de if-elif-else.
+        Evaluaciones booleanas determinan qué bloque se ejecuta.
+    - Ciclos (while, for):
+        Soporta bucles while basados en condiciones booleanas.
+        Implementa dos variantes de bucles for:
+            Con paso explícito (STEP).
+            Con rango implícito.
+
+.-Asignaciones
+
+    - Maneja variables simples y estructuras complejas como listas:
+        Asignación de listas vacías o con contenido.
+        Modificación de elementos de listas utilizando índices.
+    - Incremento (++) y decremento (--) sobre variables.
+
+.-Operaciones Aritméticas
+
+    - Operadores básicos: suma, resta, multiplicación, división, módulo.
+    - Maneja división entre cero devolviendo un error.
+
+.-Operaciones Booleanas
+
+    - Implementa operadores lógicos (and, or) y comparaciones (<, >, ==, !=, etc.).
+    - Soporte para valores booleanos (TRUE, FALSE).
+
+.-Funciones
+
+    - Definición de funciones con parámetros opcionales.
+    - Soporte para retorno de valores mediante RETURN.
+
+.-Impresión
+
+    - Usa el token PRINT para mostrar valores en pantalla.
+
 >[!TIP]
 > Para poder iniciar el compilador seguir los siguientes pasos:
 
