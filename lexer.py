@@ -140,14 +140,3 @@ def t_error(t):
     t.lexer.skip(1)
 
 lexer = lex.lex()
-
-with open('pruebas/codigo.txt', 'r') as file:
-    data = file.read()
-
-lexer.input(data)
-
-while True:
-    tok = lexer.token()
-    if not tok:
-        break
-    #print(tok)
