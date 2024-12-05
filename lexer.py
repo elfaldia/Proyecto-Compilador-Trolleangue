@@ -48,7 +48,6 @@ tokens=(
     'SEMICOLON',
     'COMMA',
     'COMMENT',
-    'DOT',
     #Operaciones logicas
     'EQUAL',
     'NOT_EQUAL',
@@ -87,7 +86,6 @@ t_LESS_EQUAL   = r'\>\='
 t_MODULO= r'%'
 t_SEMICOLON=r'\;'
 t_COMMA=r','
-t_DOT=r'.'
 
 t_DECREMENT=r'\+\+'
 t_INCREMENT=r'\-\-'
